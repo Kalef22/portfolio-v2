@@ -1,9 +1,18 @@
+import Hero from "./sections/Hero";
+import About from "./sections/About";
+import Projects from "./sections/Projects";
+import Skills from "./sections/Skills";
+import Contact from "./sections/Contact";
+
 function App() {
   return (
-    <main>
-      <h1>Kaleff Villanueva</h1>
-      <p>Desarrollador Web Full Stack Junior | AWS Cloud</p>
-    </main>
+    <>
+      <Hero />
+      <About />
+      <Projects />
+      <Skills />
+      <Contact />
+    </>  
   );
 }
 
