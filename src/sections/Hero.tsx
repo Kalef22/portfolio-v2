@@ -1,20 +1,24 @@
 function Hero() {
   return (
-    <section className="hero">
+    <section className="hero" id="inicio">
       <h1>Kaleff Villanueva</h1>
 
-      <h2>
-        Desarrollador Web Full Stack Junior | AWS Cloud Architect in Training
-      </h2>
+      <h2>Desarrollador Web Full Stack Junior | AWS Cloud</h2>
 
       <p>
-        Desarrollo aplicaciones web modernas utilizando JavaScript,
-        React, Node.js y Express.
+        Desarrollo aplicaciones web modernas utilizando JavaScript, React,
+        Node.js y Express. Actualmente refuerzo mis conocimientos en TypeScript,
+        arquitectura backend y servicios cloud con AWS.
       </p>
 
       <div className="hero-buttons">
-        <button>Ver proyectos</button>
-        <button>Contactar</button>
+        <a className="button" href="#proyectos">
+          Ver proyectos
+        </a>
+
+        <a className="button secondary" href="#contacto">
+          Contactar
+        </a>
       </div>
     </section>
   );
