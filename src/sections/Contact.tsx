@@ -1,6 +1,6 @@
 function Contact() {
     return (
-        <section id="contacto">
+        <section id="contact" className="contact reveal">
             <h2>Contacto</h2>
 
             <p>LinkedIn, GitHub y email.</p>

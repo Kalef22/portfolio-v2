@@ -7,10 +7,10 @@ function Navbar() {
                 </a>
 
                 <nav>
-                    <a href="#sobre-mi">Sobre mí</a>
-                    <a href="#proyectos">Proyectos</a>
-                    <a href="#tecnologias">Tecnologias</a>
-                    <a href="#contacto">Contacto</a>
+                    <a href="#about">Sobre mí</a>
+                    <a href="#projects">Proyectos</a>
+                    <a href="#skills">Tecnologias</a>
+                    <a href="#contact">Contacto</a>
                 </nav>
             </div>
         </header>

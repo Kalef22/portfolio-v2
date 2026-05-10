@@ -3,7 +3,7 @@ import { projects } from "../data/projects";
 
 function Projects() {
     return (
-        <section id="proyectos">
+        <section id="projects" className="projects reveal">
             <h2>Proyectos</h2>
 
             <div className="projects-grid">

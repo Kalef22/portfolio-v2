@@ -1,3 +1,4 @@
+import { useScrollREveal } from "./hooks/useScrollReveal";
 import Navbar from "./components/Navbar";   // exportacion por default
 import { Footer } from "./components/Footer";   // exportación nombrada
 
@@ -8,6 +9,7 @@ import Skills from "./sections/Skills";
 import Contact from "./sections/Contact";
 
 function App() {
+    useScrollREveal();
     return (
         <>
             <Navbar />
