@@ -297,3 +297,44 @@ nav a:hover {
     opacity: 1;
     transform: translateY(0);
 }
+
+.hero-socials {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.hero-socials a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #f8fafc;
+    font-size: 1.5rem;
+
+    transition:
+        transform 0.3s ease,
+        color 0.3s ease;
+}
+
+.hero-socials a:hover {
+    color: #38bdf8;
+    transform: translateY(-3px);
+}
+
+.cv-button {
+    padding: 0.8rem 1.2rem;
+    border: 1px solid #38bdf8;
+    border-radius: 999px;
+
+    font-size: 0.9rem !important;
+    font-weight: 600;
+
+    color: #38bdf8 !important;
+}
+
+.cv-button:hover {
+    background: #38bdf8;
+    color: #0f172a !important;
+}
