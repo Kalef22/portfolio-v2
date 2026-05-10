@@ -12,6 +12,11 @@ function Hero() {
                 en TypeScript, arquitectura backend y servicios cloud con AWS.
             </p>
 
+            <div className="hero-status">
+                <span className="status-dot"></span>
+                Disponible para proyectos full-stack y cloud.
+            </div>
+
             <div className="hero-buttons">
                 <a href="#proyectos" className="primary-button">
                     Ver proyectos
@@ -38,7 +43,7 @@ function Hero() {
                     <FaLinkedin />
                 </a>
 
-                <a href="/cv.pdf" className='cv-button'>
+                <a href="/cv.pdf" className="cv-button" target="_blank" rel="noreferrer">
                     Descargar CV
                 </a>
             </div>

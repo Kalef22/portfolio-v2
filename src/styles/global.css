@@ -237,6 +237,16 @@ p {
     margin-top: 2rem;
 }
 
+.hero-socials .cv-button {
+    color: var(--primary);
+    font-size: 0.9rem;
+}
+
+.hero-socials .cv-button:hover {
+    background: var(--primary);
+    color: #020617;
+}
+
 .hero-socials a {
     display: flex;
     align-items: center;
@@ -251,7 +261,7 @@ p {
         color 0.3s ease;
 }
 
-.hero-socials a:hover {
+.hero-socials a:not(.cv-button):hover {
     color: var(--primary);
     transform: translateY(-3px);
 }
@@ -259,6 +269,60 @@ p {
 .cv-button {
     font-size: 0.9rem !important;
 }
+
+/* ===== punto de disponibilidad inicio ===== */
+.hero-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+
+    margin-top: 1.5rem;
+    padding: 0.7rem 1rem;
+
+    border: 1px solid rgba(34, 197, 94, 0.15);
+    border-radius: 999px;
+
+    background: rgba(15, 23, 42, 0.45);
+
+    color: var(--text-muted);
+    font-size: 0.95rem;
+
+    backdrop-filter: blur(10px);
+}
+
+.status-dot {
+    width: 10px;
+    height: 10px;
+
+    border-radius: 50%;
+
+    background: var(--primary);
+
+    box-shadow:
+        0 0 10px rgba(34, 197, 94, 0.8),
+        0 0 20px rgba(34, 197, 94, 0.4);
+
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.25);
+        opacity: 0.7;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+/*  ===== punto disponibilidad fin ==== */
+
 
 /* ===== Sections ===== */
 
