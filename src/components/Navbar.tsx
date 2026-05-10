@@ -1,8 +1,10 @@
+import Logo from '../assets/marcakalef.svg?react';
+
 function Navbar() {
     return (
         <header className="navbar">
                 <a href="#hero" className="navbar-logo">
-                    KV
+                    <Logo />
                 </a>
 
                 <nav>
