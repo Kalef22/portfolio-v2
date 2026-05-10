@@ -1,4 +1,4 @@
-import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 function Hero() {
     return (
         <section id="hero" className="hero reveal">
@@ -43,9 +43,36 @@ function Hero() {
                     <FaLinkedin />
                 </a>
 
-                <a href="/cv.pdf" className="cv-button" target="_blank" rel="noreferrer">
+                <a
+                    href="/cv.pdf"
+                    className="cv-button"
+                    target="_blank"
+                    rel="noreferrer"
+                >
                     Descargar CV
                 </a>
+            </div>
+
+            <div className="hero-stats">
+                <div className="hero-stat">
+                    <h3>12+</h3>
+                    <p>Tecnologías</p>
+                </div>
+
+                <div className="hero-stat">
+                    <h3>3</h3>
+                    <p>Proyectos</p>
+                </div>
+
+                <div className="hero-stat">
+                    <h3>AWS</h3>
+                    <p>Cloud</p>
+                </div>
+
+                <div className="hero-stat">
+                    <h3>MERN</h3>
+                    <p>Backend</p>
+                </div>
             </div>
         </section>
     );
