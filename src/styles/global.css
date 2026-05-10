@@ -338,3 +338,36 @@ nav a:hover {
     background: #38bdf8;
     color: #0f172a !important;
 }
+
+.skill-card {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+
+    padding: 1rem 1.2rem;
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    border-radius: 1rem;
+
+    background: rgba(15, 23, 42, 0.8);
+    color: #f8fafc;
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease;
+}
+
+.skill-card:hover {
+    transform: translateY(-5px);
+    border-color: #38bdf8;
+}
+
+.skill-card span {
+    display: flex;
+    font-size: 1.5rem;
+    color: #38bdf8;
+}
+
+.skill-card p {
+    margin: 0;
+    font-weight: 600;
+}
