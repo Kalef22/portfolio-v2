@@ -1,11 +1,17 @@
+import { skills } from "../data/skills";
+
 function Skills() {
   return (
     <section id="tecnologias">
       <h2>Tecnologías</h2>
 
-      <p>
-        React, Node.js, Express, MongoDB, TypeScript, AWS...
-      </p>
+      <div className="skills-grid">
+        {skills.map((skill) =>(
+          <div key={skill} className="skill-card">
+            {skill}
+          </div>
+        ))}
+      </div>
     </section>
   );
 }
