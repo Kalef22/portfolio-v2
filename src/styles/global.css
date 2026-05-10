@@ -450,5 +450,21 @@ nav a:hover {
     color: #020617;
     transform: translateY(-3px);
 }
-
 /* ===== Glow effect en botones fin ===== */
+
+.section-header span {
+    color: #38bdf8;
+    font-weight: 700;
+}
+
+.about-content {
+    max-width: 850px;
+    display: grid;
+    gap: 1.2rem;
+}
+
+.about-content p {
+    color: #cbd5e1;
+    line-height: 1.8;
+    font-size: 1.05rem;
+}
