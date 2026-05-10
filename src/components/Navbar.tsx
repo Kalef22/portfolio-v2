@@ -1,18 +1,18 @@
 function Navbar() {
     return (
         <header className="navbar">
-            <div className="navbar-container">
-                <a href="#inicio" className="logo">
+                <a href="#hero" className="navbar-logo">
                     KV
                 </a>
 
                 <nav>
-                    <a href="#about">Sobre mí</a>
-                    <a href="#projects">Proyectos</a>
-                    <a href="#skills">Tecnologias</a>
-                    <a href="#contact">Contacto</a>
+                    <ul className="navbar-links">
+                        <li><a href="#about">Sobre mí</a></li>
+                        <li><a href="#projects">Proyectos</a></li>
+                        <li><a href="#skills">Tecnologias</a></li>
+                        <li><a href="#contact">Contacto</a></li>
+                    </ul>
                 </nav>
-            </div>
         </header>
     );
 }
