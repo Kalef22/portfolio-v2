@@ -59,10 +59,10 @@ function Hero() {
                     <p>Tecnologías</p>
                 </div>
 
-                <div className="hero-stat">
+                {/* <div className="hero-stat">
                     <h3>3</h3>
                     <p>Proyectos</p>
-                </div>
+                </div> */}
 
                 <div className="hero-stat">
                     <h3>AWS</h3>
@@ -71,7 +71,7 @@ function Hero() {
 
                 <div className="hero-stat">
                     <h3>MERN</h3>
-                    <p>Backend</p>
+                    <p>Frontend - Backend</p>
                 </div>
             </div>
         </section>
