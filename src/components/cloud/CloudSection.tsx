@@ -14,8 +14,9 @@ export function CloudSection() {
 
             <div className="cloud-grid">
                 {cloudData.map((service) => (
-                    <article className="cloud-card reveal" key={service}>
-                        <span>{service}</span>
+                    <article className="cloud-card reveal" key={service.name}>
+                        <h3>{service.name}</h3>
+                        <p>{service.description}</p>
                     </article>
                 ))}
             </div>
