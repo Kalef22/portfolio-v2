@@ -14,17 +14,16 @@ export function Timeline() {
             </div>
 
             <div className="timeline">
-                {timelineData.map((item) => (
+                {timelineData.map((item, index) => (
                     <TimelineItem
-                    key={item.title}
-                    period={item.period}
-                    title={item.title}
-                    description={item.description}
+                        key={item.title}
+                        period={item.period}
+                        title={item.title}
+                        description={item.description}
+                        side={index % 2 === 0 ? "left" : "right"}
                     />
                 ))}
             </div>
         </section>
     );
 }
-
-
