@@ -1,6 +1,7 @@
 /* =========================================================
    GLOBAL.CSS — Portfolio V2
-   Estructura:
+   ---------------------------------------------------------
+   Índice:
    01. Variables globales
    02. Reset y estilos base
    03. Efectos visuales globales
@@ -21,7 +22,8 @@
 
 /* =========================================================
    01. VARIABLES GLOBALES
-   Colores, fondos, bordes y sombras principales del proyecto.
+   Define la identidad visual principal del portfolio:
+   colores, fondos, bordes, tarjetas y sombras glow.
    ========================================================= */
 
 :root {
@@ -42,11 +44,17 @@
 
 /* =========================================================
    02. RESET Y ESTILOS BASE
-   Normaliza estilos, fondo global, tipografía y layout base.
+   Normaliza el comportamiento del documento y define:
+   - fondo global
+   - tipografía
+   - espaciado base
+   - comportamiento de scroll
+   - focus accesible
    ========================================================= */
 
 * {
     box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
 }
 
 html {
@@ -74,6 +82,7 @@ body {
             transparent 25%
         ),
         var(--bg);
+
     background-size:
         40px 40px,
         40px 40px,
@@ -114,9 +123,25 @@ p {
     line-height: 1.7;
 }
 
+button,
+a {
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+button:focus-visible,
+a:focus-visible {
+    outline: 2px solid rgba(34, 197, 94, 0.45);
+    outline-offset: 4px;
+    border-radius: 12px;
+}
+
 /* =========================================================
    03. EFECTOS VISUALES GLOBALES
-   Barra de progreso, glow del cursor y blobs de fondo.
+   Efectos decorativos que dan profundidad premium:
+   - barra de progreso superior
+   - glow del cursor
+   - blobs/orbs animados de fondo
    ========================================================= */
 
 .scroll-progress {
@@ -206,7 +231,7 @@ p {
 
 /* =========================================================
    04. COMPONENTES REUTILIZABLES
-   Botones genéricos utilizados en contacto y futuras secciones.
+   Botones genéricos para CTAs, contacto y futuras secciones.
    ========================================================= */
 
 .btn {
@@ -255,7 +280,11 @@ p {
 
 /* =========================================================
    05. NAVBAR
-   Navegación fija con glassmorphism, estado al hacer scroll y menú móvil.
+   Barra de navegación fija:
+   - glassmorphism
+   - logo SVG
+   - links con underline glow en desktop
+   - menú hamburguesa en mobile
    ========================================================= */
 
 .navbar {
@@ -355,12 +384,12 @@ p {
 
     padding: 0.7rem 0.95rem;
 
-    border-radius: 999px;
-
     color: var(--text-muted);
     font-size: 0.92rem;
     font-weight: 500;
     text-decoration: none;
+
+    border-radius: 999px;
 
     transition:
         color 0.2s ease,
@@ -438,7 +467,8 @@ p {
 
 /* =========================================================
    06. HERO
-   Primera sección: presentación, CTA, estado, redes y estadísticas.
+   Primera sección del portfolio:
+   presentación, CTA principal, redes, CV, estado y métricas.
    ========================================================= */
 
 .hero {
@@ -449,6 +479,46 @@ p {
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+
+    margin-bottom: 1.5rem;
+    padding: 0.75rem 1rem;
+
+    color: var(--text);
+    font-size: 0.92rem;
+    font-weight: 600;
+
+    background: rgba(15, 23, 42, 0.55);
+    border: 1px solid rgba(34, 197, 94, 0.16);
+    border-radius: 999px;
+
+    backdrop-filter: blur(12px);
+
+    box-shadow:
+        0 0 30px rgba(34, 197, 94, 0.08),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.02);
+}
+
+.hero-gradient-text {
+    background: linear-gradient(
+        135deg,
+        #ffffff 0%,
+        #86efac 40%,
+        #22c55e 100%
+    );
+
+    background-clip: text;
+    -webkit-background-clip: text;
+
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+
+    text-shadow: 0 0 25px rgba(34, 197, 94, 0.12);
 }
 
 .hero::before {
@@ -594,8 +664,8 @@ p {
     width: 10px;
     height: 10px;
 
-    border-radius: 50%;
     background: var(--primary);
+    border-radius: 50%;
     box-shadow:
         0 0 10px rgba(34, 197, 94, 0.8),
         0 0 20px rgba(34, 197, 94, 0.4);
@@ -646,9 +716,33 @@ p {
     font-size: 0.9rem;
 }
 
+.hero::after {
+    content: "";
+
+    position: absolute;
+    top: 10%;
+    left: 50%;
+
+    width: 500px;
+    height: 500px;
+
+    transform: translateX(-50%);
+
+    background: radial-gradient(
+        circle,
+        rgba(34, 197, 94, 0.14),
+        transparent 70%
+    );
+
+    filter: blur(60px);
+
+    z-index: -1;
+    pointer-events: none;
+}
+
 /* =========================================================
    07. CABECERAS DE SECCIÓN
-   Estilos comunes para títulos y etiquetas internas.
+   Estilos comunes para títulos y etiquetas visuales.
    ========================================================= */
 
 .section-header span {
@@ -658,7 +752,7 @@ p {
 
 /* =========================================================
    08. SOBRE MÍ
-   Texto de presentación profesional.
+   Texto de presentación profesional y storytelling personal.
    ========================================================= */
 
 .about-content {
@@ -676,7 +770,7 @@ p {
 
 /* =========================================================
    09. SKILLS / TECNOLOGÍAS
-   Grid de tecnologías con cards e iconos.
+   Grid de tecnologías con iconos, cards y hover premium.
    ========================================================= */
 
 .skills-grid {
@@ -729,7 +823,8 @@ p {
 
 /* =========================================================
    10. PROYECTOS
-   Cards de proyectos, screenshots, badges y links.
+   Cards de proyectos:
+   screenshots, descripción, stack, enlaces demo/GitHub.
    ========================================================= */
 
 .projects-grid {
@@ -853,7 +948,7 @@ p {
 
 /* =========================================================
    11. TIMELINE PROFESIONAL
-   Línea temporal de formación, experiencia y evolución profesional.
+   Línea temporal de formación, experiencia y evolución.
    ========================================================= */
 
 .timeline {
@@ -956,7 +1051,7 @@ p {
 
 /* =========================================================
    12. CLOUD / AWS
-   Cards enfocadas en servicios cloud y arquitectura AWS.
+   Cards enfocadas en servicios cloud, serverless y arquitectura.
    ========================================================= */
 
 .cloud-grid {
@@ -1074,7 +1169,7 @@ p {
 
 /* =========================================================
    14. FOOTER
-   Pie de página sencillo con borde superior.
+   Pie de página simple con borde superior y texto secundario.
    ========================================================= */
 
 .footer {
@@ -1093,7 +1188,7 @@ p {
 
 /* =========================================================
    15. ANIMACIONES
-   Keyframes globales usados por hero y fondos decorativos.
+   Keyframes compartidos por fondos decorativos y estado activo.
    ========================================================= */
 
 @keyframes orbFloat {
@@ -1125,14 +1220,16 @@ p {
 
 /* =========================================================
    16. RESPONSIVE
-   Ajustes mobile/tablet para navegación, hero, grids y cards.
+   Ajustes para mobile:
+   - navbar hamburguesa
+   - menú desplegable vertical
+   - hero centrado
+   - grids a una columna
+   - timeline vertical
+   - reducción de efectos visuales
    ========================================================= */
 
 @media (max-width: 768px) {
-    * {
-        -webkit-tap-highlight-color: transparent;
-    }
-
     body {
         font-size: 15px;
     }
@@ -1148,6 +1245,8 @@ p {
     section h2 {
         font-size: 2rem;
     }
+
+    /* Navbar mobile: logo izquierda + hamburguesa derecha */
 
     .navbar {
         top: 12px;
@@ -1168,6 +1267,8 @@ p {
         display: block;
         flex-shrink: 0;
     }
+
+    /* Menú mobile: aparece debajo de la navbar */
 
     .navbar-nav {
         position: absolute;
@@ -1208,11 +1309,57 @@ p {
             0 0 40px rgba(34, 197, 94, 0.08);
     }
 
-    .navbar-links a {
-        justify-content: center;
-        padding: 0.95rem 1rem;
-        font-size: 1rem;
+    /* Hover premium para opciones del menú hamburguesa */
+
+    .navbar-links li {
+        width: 100%;
     }
+
+    .navbar-links a {
+        position: relative;
+        z-index: 1;
+
+        display: flex;
+        justify-content: center;
+        width: 100%;
+
+        padding: 1rem 1.2rem;
+
+        color: var(--text-muted);
+        font-size: 1rem;
+
+        border-radius: 18px;
+
+        transition:
+            background 0.25s ease,
+            color 0.25s ease,
+            transform 0.25s ease,
+            box-shadow 0.25s ease;
+    }
+
+    .navbar-links a::after {
+        display: none;
+    }
+
+    .navbar-links a:hover,
+    .navbar-links a:active,
+    .navbar-links a:focus-visible {
+        color: var(--text);
+        background:
+            linear-gradient(
+                135deg,
+                rgba(34, 197, 94, 0.24),
+                rgba(34, 197, 94, 0.1)
+            );
+
+        box-shadow:
+            inset 0 0 0 1px rgba(34, 197, 94, 0.36),
+            0 0 24px rgba(34, 197, 94, 0.18);
+
+        transform: translateY(-2px);
+    }
+
+    /* Hero mobile */
 
     .hero {
         min-height: 90vh;
@@ -1248,10 +1395,14 @@ p {
         grid-template-columns: repeat(2, 1fr);
     }
 
+    /* Grids mobile */
+
     .projects-grid,
     .skills-grid {
         grid-template-columns: 1fr;
     }
+
+    /* Timeline mobile */
 
     .timeline::before {
         left: 1rem;
@@ -1269,6 +1420,8 @@ p {
         left: 0.5rem !important;
     }
 
+    /* Contacto mobile */
+
     .contact-content {
         padding: 2rem;
     }
@@ -1282,26 +1435,13 @@ p {
         justify-content: center;
     }
 
+    /* Efectos globales reducidos en mobile para mejorar rendimiento */
+
     .orb {
         width: 220px;
         height: 220px;
 
         filter: blur(10px);
         opacity: 0.12;
-    }
-
-    button,
-    a {
-        outline: none;
-        -webkit-tap-highlight-color: transparent;
-    }
-
-    /* Focus accesible personalizado */
-
-    button:focus-visible,
-    a:focus-visible {
-        outline: 2px solid rgba(34, 197, 94, 0.45);
-        outline-offset: 4px;
-        border-radius: 12px;
     }
 }

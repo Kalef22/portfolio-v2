@@ -19,6 +19,7 @@ function Navbar() {
         };
 
         handleScroll();
+
         window.addEventListener("scroll", handleScroll);
 
         return () => {
@@ -46,6 +47,10 @@ function Navbar() {
         setIsMenuOpen(false);
     };
 
+    const toggleMenu = () => {
+        setIsMenuOpen((prev) => !prev);
+    };
+
     return (
         <header className={`navbar ${isScrolled ? "navbar--scrolled" : ""}`}>
             <a href="#hero" className="navbar-logo" aria-label="Ir al inicio">
@@ -61,7 +66,7 @@ function Navbar() {
                         : "Abrir menú de navegación"
                 }
                 aria-expanded={isMenuOpen}
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                onClick={toggleMenu}
             >
                 <span />
                 <span />
