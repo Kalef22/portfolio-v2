@@ -721,10 +721,6 @@ p {
    10. CLOUD / AWS
    ============================== */
 
-.cloud-section {
-    padding: 6rem 0;
-}
-
 .cloud-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -793,7 +789,7 @@ p {
    12. SCROLL REVEAL
    ============================== */
 
-.reveal {
+/* .reveal {
     opacity: 0;
     transform: translateY(24px);
 
@@ -805,7 +801,7 @@ p {
 .reveal.active {
     opacity: 1;
     transform: translateY(0);
-}
+} */
 
 /* ==============================
    13. RESPONSIVE
@@ -861,6 +857,12 @@ p {
     .hero-socials {
         justify-content: center;
         flex-wrap: wrap;
+    }
+
+    .primary-button,
+    .secondary-button,
+    .cv-button {
+        width: 100%;
     }
 
     .hero-stats {

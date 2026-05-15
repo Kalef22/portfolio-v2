@@ -1,14 +1,19 @@
 import ProjectCard from "../components/ProjectCard";
+import Reveal from "../components/Reveal";
 import { projects } from "../data/projects";
 
 function Projects() {
     return (
-        <section id="projects" className="projects reveal">
-            <h2>Proyectos</h2>
+        <section id="projects" className="projects">
+            <Reveal>
+                <h2>Proyectos</h2>
+            </Reveal>
 
             <div className="projects-grid">
-                {projects.map((project) => (
-                    <ProjectCard key={project.title} {...project} />
+                {projects.map((project, index) => (
+                    <Reveal key={project.title} delay={index * 0.15}>
+                        <ProjectCard {...project} />
+                    </Reveal>
                 ))}
             </div>
         </section>

@@ -1,3 +1,5 @@
+import type { ReactNode } from "react";
+
 import {
     FaHtml5,
     FaCss3Alt,
@@ -9,9 +11,17 @@ import {
     FaAws,
 } from "react-icons/fa";
 
-import { SiTypescript, SiExpress, SiMongodb, SiMysql } from "react-icons/si";
+import {
+    SiTypescript,
+    SiExpress,
+    SiMongodb,
+    SiMysql,
+} from "react-icons/si";
 
-const skillIcons: Record<string, React.ReactNode> = {
+import Reveal from "../components/Reveal";
+import { skills } from "../data/skills";
+
+const skillIcons: Record<string, ReactNode> = {
     HTML: <FaHtml5 />,
     CSS: <FaCss3Alt />,
     JavaScript: <FaJs />,
@@ -26,19 +36,21 @@ const skillIcons: Record<string, React.ReactNode> = {
     AWS: <FaAws />,
 };
 
-import { skills } from "../data/skills";
-
 function Skills() {
     return (
-        <section id="skills" className="skills reveal">
-            <h2>Tecnologías</h2>
+        <section id="skills" className="skills">
+            <Reveal>
+                <h2>Tecnologías</h2>
+            </Reveal>
 
             <div className="skills-grid">
-                {skills.map((skill) => (
-                    <article className="skill-card" key={skill}>
-                        <span>{skillIcons[skill]}</span>
-                        <p>{skill}</p>
-                    </article>
+                {skills.map((skill, index) => (
+                    <Reveal key={skill} delay={index * 0.05}>
+                        <article className="skill-card">
+                            <span>{skillIcons[skill]}</span>
+                            <p>{skill}</p>
+                        </article>
+                    </Reveal>
                 ))}
             </div>
         </section>
