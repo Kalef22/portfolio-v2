@@ -1,22 +1,68 @@
-import Logo from '../assets/marcakalef.svg?react';
+import { useEffect, useState } from "react";
+import Logo from "../assets/marcakalef.svg?react";
+
+const navLinks = [
+  { label: "Sobre mí", href: "#about" },
+  { label: "Proyectos", href: "#projects" },
+  { label: "Tecnologías", href: "#skills" },
+  { label: "Contacto", href: "#contact" },
+];
 
 function Navbar() {
-    return (
-        <header className="navbar">
-                <a href="#hero" className="navbar-logo">
-                    <Logo />
-                </a>
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-                <nav>
-                    <ul className="navbar-links">
-                        <li><a href="#about">Sobre mí</a></li>
-                        <li><a href="#projects">Proyectos</a></li>
-                        <li><a href="#skills">Tecnologias</a></li>
-                        <li><a href="#contact">Contacto</a></li>
-                    </ul>
-                </nav>
-        </header>
-    );
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 24);
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
+
+  return (
+    <header className={`navbar ${isScrolled ? "navbar--scrolled" : ""}`}>
+      <a href="#hero" className="navbar-logo" aria-label="Ir al inicio">
+        <Logo />
+      </a>
+
+      <button
+        className={`navbar-toggle ${isMenuOpen ? "navbar-toggle--open" : ""}`}
+        type="button"
+        aria-label="Abrir menú de navegación"
+        aria-expanded={isMenuOpen}
+        onClick={() => setIsMenuOpen(!isMenuOpen)}
+      >
+        <span />
+        <span />
+        <span />
+      </button>
+
+      <nav
+        className={`navbar-nav ${isMenuOpen ? "navbar-nav--open" : ""}`}
+        aria-label="Navegación principal"
+      >
+        <ul className="navbar-links">
+          {navLinks.map((link) => (
+            <li key={link.href}>
+              <a href={link.href} onClick={closeMenu}>
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </header>
+  );
 }
 
 export default Navbar;

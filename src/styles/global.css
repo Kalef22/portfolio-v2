@@ -1,6 +1,28 @@
-/* ==============================
-   1. VARIABLES GLOBALES
-   ============================== */
+/* =========================================================
+   GLOBAL.CSS — Portfolio V2
+   Estructura:
+   01. Variables globales
+   02. Reset y estilos base
+   03. Efectos visuales globales
+   04. Componentes reutilizables
+   05. Navbar
+   06. Hero
+   07. Cabeceras de sección
+   08. Sobre mí
+   09. Skills / Tecnologías
+   10. Proyectos
+   11. Timeline profesional
+   12. Cloud / AWS
+   13. Contacto
+   14. Footer
+   15. Animaciones
+   16. Responsive
+   ========================================================= */
+
+/* =========================================================
+   01. VARIABLES GLOBALES
+   Colores, fondos, bordes y sombras principales del proyecto.
+   ========================================================= */
 
 :root {
     --bg: #020617;
@@ -18,9 +40,10 @@
     --glow: 0 0 20px rgba(34, 197, 94, 0.35), 0 0 40px rgba(34, 197, 94, 0.15);
 }
 
-/* ==============================
-   2. RESET Y BASE
-   ============================== */
+/* =========================================================
+   02. RESET Y ESTILOS BASE
+   Normaliza estilos, fondo global, tipografía y layout base.
+   ========================================================= */
 
 * {
     box-sizing: border-box;
@@ -32,9 +55,10 @@ html {
 
 body {
     margin: 0;
-    font-family: Inter, sans-serif;
-    color: var(--text);
     overflow-x: hidden;
+
+    color: var(--text);
+    font-family: Inter, sans-serif;
 
     background:
         linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
@@ -50,7 +74,6 @@ body {
             transparent 25%
         ),
         var(--bg);
-
     background-size:
         40px 40px,
         40px 40px,
@@ -64,14 +87,14 @@ main {
 }
 
 section {
+    position: relative;
+    z-index: 1;
+
     max-width: 1100px;
     margin: 0 auto;
     padding: 7rem 3rem;
+
     scroll-margin-top: 90px;
-    section {
-        position: relative;
-        z-index: 1;
-    }
 }
 
 h1,
@@ -91,9 +114,10 @@ p {
     line-height: 1.7;
 }
 
-/* ========================================
-   PREMIUM GLOBAL EFFECTS
-======================================== */
+/* =========================================================
+   03. EFECTOS VISUALES GLOBALES
+   Barra de progreso, glow del cursor y blobs de fondo.
+   ========================================================= */
 
 .scroll-progress {
     position: fixed;
@@ -112,7 +136,6 @@ p {
         #86efac,
         var(--primary-soft)
     );
-
     box-shadow: 0 0 18px rgba(34, 197, 94, 0.7);
 }
 
@@ -126,8 +149,6 @@ p {
     pointer-events: none;
     border-radius: 999px;
 
-    transform: translate(-50%, -50%);
-
     background: radial-gradient(
         circle,
         rgba(34, 197, 94, 0.16),
@@ -137,6 +158,7 @@ p {
 
     filter: blur(10px);
     opacity: 0.8;
+    will-change: transform;
 }
 
 .gradient-orbs {
@@ -155,10 +177,11 @@ p {
     height: 360px;
 
     border-radius: 999px;
-    filter: blur(50px);
+    filter: blur(40px);
     opacity: 0.22;
 
     animation: orbFloat 16s ease-in-out infinite alternate;
+    will-change: transform;
 }
 
 .orb-1 {
@@ -181,55 +204,126 @@ p {
     animation-delay: 3s;
 }
 
-@keyframes orbFloat {
-    from {
-        transform: translate3d(0, 0, 0) scale(1);
-    }
+/* =========================================================
+   04. COMPONENTES REUTILIZABLES
+   Botones genéricos utilizados en contacto y futuras secciones.
+   ========================================================= */
 
-    to {
-        transform: translate3d(40px, -50px, 0) scale(1.50);
-    }
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+
+    padding: 0.85rem 1.25rem;
+
+    border-radius: 999px;
+
+    font-weight: 700;
+    text-decoration: none;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease,
+        color 0.25s ease,
+        background 0.25s ease;
 }
 
-.cursor-glow,
-.orb {
-    will-change: transform;
+.btn-primary {
+    color: #020617;
+    background: linear-gradient(135deg, var(--primary), var(--primary-soft));
+    box-shadow: 0 0 30px rgba(34, 197, 94, 0.25);
 }
 
-/* ==============================
-   3. NAVBAR
-   ============================== */
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 45px rgba(34, 197, 94, 0.4);
+}
+
+.btn-secondary {
+    color: var(--text);
+    background: rgba(15, 23, 42, 0.75);
+    border: 1px solid rgba(34, 197, 94, 0.25);
+}
+
+.btn-secondary:hover {
+    color: var(--primary);
+    transform: translateY(-3px);
+    border-color: rgba(34, 197, 94, 0.5);
+}
+
+/* =========================================================
+   05. NAVBAR
+   Navegación fija con glassmorphism, estado al hacer scroll y menú móvil.
+   ========================================================= */
 
 .navbar {
     position: fixed;
-    top: 0;
+    top: 16px;
+    left: 50%;
     z-index: 1000;
 
-    width: 100%;
+    width: min(1120px, calc(100% - 32px));
+    height: 72px;
 
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
 
-    padding: 1rem 3rem;
+    padding: 0 1.25rem;
 
-    background: rgba(2, 6, 23, 0.55);
-    backdrop-filter: blur(18px);
-    border-bottom: 1px solid rgba(34, 197, 94, 0.12);
+    transform: translateX(-50%);
+
+    background: rgba(2, 6, 23, 0.45);
+    border: 1px solid rgba(34, 197, 94, 0.12);
+    border-radius: 999px;
+
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+
+    transition:
+        top 0.25s ease,
+        background 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.navbar--scrolled {
+    top: 10px;
+    background: rgba(2, 6, 23, 0.78);
+    border-color: rgba(34, 197, 94, 0.22);
+    box-shadow:
+        0 18px 50px rgba(0, 0, 0, 0.35),
+        0 0 35px rgba(34, 197, 94, 0.08);
 }
 
 .navbar-logo {
     display: flex;
     align-items: center;
+    justify-content: center;
+
+    padding: 0.35rem;
+    border-radius: 18px;
+
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease;
+}
+
+.navbar-logo:hover {
+    transform: translateY(-2px);
+    background: rgba(34, 197, 94, 0.06);
 }
 
 .navbar-logo svg {
-    width: 105px;
+    display: block;
+    width: 103px;
     height: auto;
 
     transition:
-        transform 0.3s ease,
-        filter 0.3s ease;
+        transform 0.25s ease,
+        filter 0.25s ease;
 }
 
 .navbar-logo:hover svg {
@@ -237,9 +331,15 @@ p {
     filter: drop-shadow(0 0 10px rgba(34, 197, 94, 0.45));
 }
 
+.navbar-nav {
+    display: flex;
+    align-items: center;
+}
+
 .navbar-links {
     display: flex;
-    gap: 2rem;
+    align-items: center;
+    gap: 0.35rem;
 
     padding: 0;
     margin: 0;
@@ -247,21 +347,99 @@ p {
     list-style: none;
 }
 
-.navbar a {
-    color: var(--text);
-    text-decoration: none;
+.navbar-links a {
+    position: relative;
+
+    display: inline-flex;
+    align-items: center;
+
+    padding: 0.7rem 0.95rem;
+
+    border-radius: 999px;
+
+    color: var(--text-muted);
+    font-size: 0.92rem;
     font-weight: 500;
+    text-decoration: none;
 
-    transition: color 0.3s ease;
+    transition:
+        color 0.2s ease,
+        background 0.2s ease;
 }
 
-.navbar a:hover {
-    color: var(--primary);
+.navbar-links a:hover {
+    color: var(--text);
+    background: rgba(34, 197, 94, 0.08);
 }
 
-/* ==============================
-   4. HERO
-   ============================== */
+.navbar-links a::after {
+    content: "";
+
+    position: absolute;
+    left: 50%;
+    bottom: 0.35rem;
+
+    width: 18px;
+    height: 2px;
+
+    transform: translateX(-50%) scaleX(0);
+    transform-origin: center;
+
+    background: var(--primary);
+    border-radius: 999px;
+    box-shadow: 0 0 12px rgba(34, 197, 94, 0.8);
+
+    transition: transform 0.2s ease;
+}
+
+.navbar-links a:hover::after {
+    transform: translateX(-50%) scaleX(1);
+}
+
+.navbar-toggle {
+    display: none;
+
+    width: 44px;
+    height: 44px;
+
+    border: 1px solid rgba(34, 197, 94, 0.18);
+    border-radius: 999px;
+    background: rgba(15, 23, 42, 0.7);
+
+    cursor: pointer;
+}
+
+.navbar-toggle span {
+    display: block;
+
+    width: 18px;
+    height: 2px;
+    margin: 4px auto;
+
+    background: var(--text);
+    border-radius: 999px;
+
+    transition:
+        transform 0.25s ease,
+        opacity 0.25s ease;
+}
+
+.navbar-toggle--open span:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+}
+
+.navbar-toggle--open span:nth-child(2) {
+    opacity: 0;
+}
+
+.navbar-toggle--open span:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
+}
+
+/* =========================================================
+   06. HERO
+   Primera sección: presentación, CTA, estado, redes y estadísticas.
+   ========================================================= */
 
 .hero {
     position: relative;
@@ -284,7 +462,6 @@ p {
         rgba(34, 197, 94, 0.08),
         transparent 60%
     );
-
     pointer-events: none;
 }
 
@@ -313,8 +490,6 @@ p {
     line-height: 1.8;
 }
 
-/* Botones principales del hero */
-
 .hero-buttons {
     display: flex;
     align-items: center;
@@ -327,6 +502,7 @@ p {
 .secondary-button,
 .cv-button {
     padding: 1rem 1.5rem;
+
     border-radius: 999px;
 
     font-weight: 700;
@@ -340,14 +516,13 @@ p {
 }
 
 .primary-button {
-    background: var(--primary);
     color: var(--bg);
+    background: var(--primary);
     box-shadow: var(--glow);
 }
 
 .primary-button:hover {
     transform: translateY(-3px);
-
     box-shadow:
         0 0 25px rgba(34, 197, 94, 0.5),
         0 0 50px rgba(34, 197, 94, 0.2);
@@ -355,21 +530,17 @@ p {
 
 .secondary-button,
 .cv-button {
-    border: 1px solid var(--primary);
-
-    background: transparent;
     color: var(--primary);
+    background: transparent;
+    border: 1px solid var(--primary);
 }
 
 .secondary-button:hover,
 .cv-button:hover {
-    background: var(--primary);
     color: var(--bg);
-
+    background: var(--primary);
     transform: translateY(-3px);
 }
-
-/* Redes sociales y CV */
 
 .hero-socials {
     display: flex;
@@ -402,8 +573,6 @@ p {
     font-size: 0.9rem !important;
 }
 
-/* Estado de disponibilidad */
-
 .hero-status {
     display: inline-flex;
     align-items: center;
@@ -412,14 +581,13 @@ p {
     margin-top: 1.5rem;
     padding: 0.7rem 1rem;
 
-    border: 1px solid rgba(34, 197, 94, 0.15);
-    border-radius: 999px;
-
-    background: rgba(15, 23, 42, 0.45);
-    backdrop-filter: blur(10px);
-
     color: var(--text-muted);
     font-size: 0.95rem;
+
+    background: rgba(15, 23, 42, 0.45);
+    border: 1px solid rgba(34, 197, 94, 0.15);
+    border-radius: 999px;
+    backdrop-filter: blur(10px);
 }
 
 .status-dot {
@@ -427,34 +595,13 @@ p {
     height: 10px;
 
     border-radius: 50%;
-
     background: var(--primary);
-
     box-shadow:
         0 0 10px rgba(34, 197, 94, 0.8),
         0 0 20px rgba(34, 197, 94, 0.4);
 
     animation: pulse 2s infinite;
 }
-
-@keyframes pulse {
-    0% {
-        transform: scale(1);
-        opacity: 1;
-    }
-
-    50% {
-        transform: scale(1.25);
-        opacity: 0.7;
-    }
-
-    100% {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
-
-/* Estadísticas del hero */
 
 .hero-stats {
     display: grid;
@@ -468,10 +615,9 @@ p {
 .hero-stat {
     padding: 1.2rem;
 
+    background: rgba(15, 23, 42, 0.45);
     border: 1px solid rgba(34, 197, 94, 0.12);
     border-radius: 1rem;
-
-    background: rgba(15, 23, 42, 0.45);
     backdrop-filter: blur(10px);
 
     transition:
@@ -500,24 +646,26 @@ p {
     font-size: 0.9rem;
 }
 
-/* ==============================
-   5. CABECERAS DE SECCIÓN
-   ============================== */
+/* =========================================================
+   07. CABECERAS DE SECCIÓN
+   Estilos comunes para títulos y etiquetas internas.
+   ========================================================= */
 
 .section-header span {
     color: var(--primary);
     font-weight: 700;
 }
 
-/* ==============================
-   6. SOBRE MÍ
-   ============================== */
+/* =========================================================
+   08. SOBRE MÍ
+   Texto de presentación profesional.
+   ========================================================= */
 
 .about-content {
-    max-width: 850px;
-
     display: grid;
     gap: 1.2rem;
+
+    max-width: 850px;
 }
 
 .about-content p {
@@ -526,9 +674,10 @@ p {
     line-height: 1.8;
 }
 
-/* ==============================
-   7. SKILLS / TECNOLOGÍAS
-   ============================== */
+/* =========================================================
+   09. SKILLS / TECNOLOGÍAS
+   Grid de tecnologías con cards e iconos.
+   ========================================================= */
 
 .skills-grid {
     display: grid;
@@ -545,13 +694,12 @@ p {
 
     padding: 1rem 1.2rem;
 
-    border: 1px solid var(--border);
-    border-radius: 1rem;
+    color: var(--text);
 
     background: rgba(15, 23, 42, 0.55);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
     backdrop-filter: blur(12px);
-
-    color: var(--text);
 
     transition:
         transform 0.3s ease,
@@ -561,9 +709,7 @@ p {
 
 .skill-card:hover {
     transform: translateY(-8px);
-
     border-color: var(--primary);
-
     box-shadow:
         0 0 20px rgba(34, 197, 94, 0.22),
         0 10px 30px rgba(0, 0, 0, 0.3);
@@ -581,9 +727,10 @@ p {
     font-weight: 600;
 }
 
-/* ==============================
-   8. PROYECTOS
-   ============================== */
+/* =========================================================
+   10. PROYECTOS
+   Cards de proyectos, screenshots, badges y links.
+   ========================================================= */
 
 .projects-grid {
     display: grid;
@@ -599,10 +746,9 @@ p {
     display: flex;
     flex-direction: column;
 
+    background: rgba(15, 23, 42, 0.55);
     border: 1px solid var(--border);
     border-radius: 1rem;
-
-    background: rgba(15, 23, 42, 0.55);
     backdrop-filter: blur(12px);
 
     transition:
@@ -613,24 +759,19 @@ p {
 
 .project-card:hover {
     transform: translateY(-8px);
-
     border-color: var(--primary);
-
     box-shadow:
         0 0 20px rgba(34, 197, 94, 0.22),
         0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
-/* Imagen del proyecto */
-
 .project-image {
+    display: block;
+
     width: 100%;
     height: 220px;
 
-    display: block;
-
     object-fit: cover;
-
     border-bottom: 1px solid var(--border);
 
     transition:
@@ -657,8 +798,6 @@ p {
     line-height: 1.7;
 }
 
-/* Badges de tecnologías */
-
 .project-technologies {
     display: flex;
     flex-wrap: wrap;
@@ -673,54 +812,49 @@ p {
 .project-technologies li {
     padding: 0.4rem 0.7rem;
 
-    border-radius: 999px;
-
-    background: rgba(34, 197, 94, 0.12);
     color: var(--primary);
-
     font-size: 0.85rem;
     font-weight: 600;
-}
 
-/* Links GitHub / Demo convertidos en botones */
+    background: rgba(34, 197, 94, 0.12);
+    border-radius: 999px;
+}
 
 .project-links {
     display: flex;
-    gap: 1rem;
     flex-wrap: wrap;
+    gap: 1rem;
 }
 
 .project-links a {
     padding: 0.7rem 1.2rem;
 
-    border: 1px solid var(--border);
-    border-radius: 0.8rem;
-
-    background: rgba(255, 255, 255, 0.03);
-
     color: var(--text);
     font-weight: 600;
     text-decoration: none;
 
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border);
+    border-radius: 0.8rem;
+
     transition:
+        transform 0.3s ease,
         background 0.3s ease,
         border-color 0.3s ease,
-        color 0.3s ease,
-        transform 0.3s ease;
+        color 0.3s ease;
 }
 
 .project-links a:hover {
     transform: translateY(-2px);
-
-    border-color: var(--primary);
-
-    background: rgba(34, 197, 94, 0.1);
     color: var(--primary);
+    background: rgba(34, 197, 94, 0.1);
+    border-color: var(--primary);
 }
 
-/* ==============================
-   9. TIMELINE PROFESIONAL
-   ============================== */
+/* =========================================================
+   11. TIMELINE PROFESIONAL
+   Línea temporal de formación, experiencia y evolución profesional.
+   ========================================================= */
 
 .timeline {
     position: relative;
@@ -740,7 +874,6 @@ p {
     height: 100%;
 
     transform: translateX(-50%);
-
     background: linear-gradient(to bottom, var(--primary), transparent);
 }
 
@@ -748,7 +881,6 @@ p {
     position: relative;
 
     width: 50%;
-
     padding: 1rem 3rem;
     margin-bottom: 2rem;
 }
@@ -768,9 +900,8 @@ p {
     width: 1rem;
     height: 1rem;
 
-    border-radius: 50%;
-
     background: var(--primary);
+    border-radius: 50%;
     box-shadow: 0 0 20px var(--primary);
 }
 
@@ -785,10 +916,9 @@ p {
 .timeline-content {
     padding: 1.5rem;
 
+    background: rgba(15, 23, 42, 0.7);
     border: 1px solid var(--border);
     border-radius: 1.5rem;
-
-    background: rgba(15, 23, 42, 0.7);
     backdrop-filter: blur(10px);
 
     transition:
@@ -799,9 +929,7 @@ p {
 
 .timeline-content:hover {
     transform: translateY(-6px);
-
     border-color: var(--primary);
-
     box-shadow: 0 10px 30px rgba(34, 197, 94, 0.15);
 }
 
@@ -811,7 +939,6 @@ p {
     margin-bottom: 0.75rem;
 
     color: var(--primary);
-
     font-size: 0.9rem;
     font-weight: 700;
     letter-spacing: 1px;
@@ -827,9 +954,10 @@ p {
     line-height: 1.7;
 }
 
-/* ==============================
-   10. CLOUD / AWS
-   ============================== */
+/* =========================================================
+   12. CLOUD / AWS
+   Cards enfocadas en servicios cloud y arquitectura AWS.
+   ========================================================= */
 
 .cloud-grid {
     display: grid;
@@ -842,10 +970,9 @@ p {
 .cloud-card {
     padding: 1.5rem;
 
+    background: rgba(15, 23, 42, 0.7);
     border: 1px solid var(--border);
     border-radius: 1.25rem;
-
-    background: rgba(15, 23, 42, 0.7);
 
     transition:
         transform 0.3s ease,
@@ -855,9 +982,7 @@ p {
 
 .cloud-card:hover {
     transform: translateY(-6px);
-
     border-color: var(--primary);
-
     box-shadow: 0 10px 30px rgba(34, 197, 94, 0.15);
 }
 
@@ -877,45 +1002,131 @@ p {
     font-weight: 600;
 }
 
-/* ==============================
-   11. FOOTER
-   ============================== */
+/* =========================================================
+   13. CONTACTO
+   CTA final con tarjeta premium y botones de contacto.
+   ========================================================= */
+
+.contact-section {
+    position: relative;
+}
+
+.contact-card {
+    position: relative;
+
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 1px;
+
+    background: linear-gradient(
+        135deg,
+        rgba(34, 197, 94, 0.6),
+        rgba(15, 23, 42, 0.2),
+        rgba(34, 197, 94, 0.25)
+    );
+    border-radius: 28px;
+    box-shadow: 0 0 60px rgba(34, 197, 94, 0.12);
+}
+
+.contact-content {
+    padding: 3rem;
+
+    text-align: center;
+
+    background:
+        radial-gradient(
+            circle at top right,
+            rgba(34, 197, 94, 0.14),
+            transparent 35%
+        ),
+        rgba(2, 6, 23, 0.9);
+    border: 1px solid rgba(148, 163, 184, 0.12);
+    border-radius: 27px;
+}
+
+.contact-content h3 {
+    margin-bottom: 1rem;
+
+    color: var(--text);
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+}
+
+.contact-content p {
+    max-width: 640px;
+    margin: 0 auto 2rem;
+
+    color: var(--text-muted);
+    line-height: 1.7;
+}
+
+.contact-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.contact-actions .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+}
+
+/* =========================================================
+   14. FOOTER
+   Pie de página sencillo con borde superior.
+   ========================================================= */
 
 .footer {
     padding: 2rem;
 
-    border-top: 1px solid rgba(34, 197, 94, 0.12);
-
     color: var(--text-muted);
     text-align: center;
     font-size: 0.9rem;
+
+    border-top: 1px solid rgba(34, 197, 94, 0.12);
 }
 
 .footer p {
     margin: 0.3rem 0;
 }
 
-/* ==============================
-   12. SCROLL REVEAL
-   ============================== */
+/* =========================================================
+   15. ANIMACIONES
+   Keyframes globales usados por hero y fondos decorativos.
+   ========================================================= */
 
-/* .reveal {
-    opacity: 0;
-    transform: translateY(24px);
+@keyframes orbFloat {
+    from {
+        transform: translate3d(0, 0, 0) scale(1);
+    }
 
-    transition:
-        opacity 0.7s ease,
-        transform 0.7s ease;
+    to {
+        transform: translate3d(40px, -50px, 0) scale(1.5);
+    }
 }
 
-.reveal.active {
-    opacity: 1;
-    transform: translateY(0);
-} */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
 
-/* ==============================
-   13. RESPONSIVE
-   ============================== */
+    50% {
+        transform: scale(1.25);
+        opacity: 0.7;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* =========================================================
+   16. RESPONSIVE
+   Ajustes mobile/tablet para navegación, hero, grids y cards.
+   ========================================================= */
 
 @media (max-width: 768px) {
     body {
@@ -923,7 +1134,7 @@ p {
     }
 
     main {
-        padding-top: 120px;
+        padding-top: 90px;
     }
 
     section {
@@ -935,23 +1146,68 @@ p {
     }
 
     .navbar {
-        flex-direction: column;
-        justify-content: center;
-        gap: 0.8rem;
+        top: 12px;
 
-        padding: 1rem;
+        height: 64px;
+        padding: 0 0.9rem;
+
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 0;
     }
 
     .navbar-logo svg {
-        width: 78px;
+        width: 96px;
+    }
+
+    .navbar-toggle {
+        display: block;
+        flex-shrink: 0;
+    }
+
+    .navbar-nav {
+        position: absolute;
+        top: calc(100% + 0.75rem);
+        left: 0;
+
+        width: 100%;
+
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(-10px) scale(0.98);
+
+        transition:
+            opacity 0.25s ease,
+            transform 0.25s ease;
+    }
+
+    .navbar-nav--open {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0) scale(1);
     }
 
     .navbar-links {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 0.8rem;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.45rem;
 
-        font-size: 0.9rem;
+        padding: 0.85rem;
+
+        background: rgba(2, 6, 23, 0.92);
+        border: 1px solid rgba(34, 197, 94, 0.16);
+        border-radius: 28px;
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+        box-shadow:
+            0 22px 60px rgba(0, 0, 0, 0.45),
+            0 0 40px rgba(34, 197, 94, 0.08);
+    }
+
+    .navbar-links a {
+        justify-content: center;
+        padding: 0.95rem 1rem;
+        font-size: 1rem;
     }
 
     .hero {
@@ -960,7 +1216,11 @@ p {
     }
 
     .hero h1 {
-        font-size: 2.6rem;
+        font-size: clamp(2.5rem, 12vw, 4rem);
+    }
+
+    .hero p {
+        max-width: 100%;
     }
 
     .hero-buttons,
@@ -973,6 +1233,11 @@ p {
     .secondary-button,
     .cv-button {
         width: 100%;
+    }
+
+    .hero-status {
+        width: 100%;
+        justify-content: center;
     }
 
     .hero-stats {
@@ -989,9 +1254,9 @@ p {
     }
 
     .timeline-item {
-        width: 100%;
         left: 0 !important;
 
+        width: 100%;
         padding-right: 1rem;
         padding-left: 3rem;
     }
@@ -1000,79 +1265,6 @@ p {
         left: 0.5rem !important;
     }
 
-    .orb {
-        width: 220px;
-        height: 220px;
-
-        filter: blur(10px);
-        opacity: 0.12;
-    }
-}
-
-/* =========================
-   Contact
-========================= */
-
-.contact-section {
-    position: relative;
-}
-
-.contact-card {
-    position: relative;
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 1px;
-    border-radius: 28px;
-    background: linear-gradient(
-        135deg,
-        rgba(34, 197, 94, 0.6),
-        rgba(15, 23, 42, 0.2),
-        rgba(34, 197, 94, 0.25)
-    );
-    box-shadow: 0 0 60px rgba(34, 197, 94, 0.12);
-}
-
-.contact-content {
-    border-radius: 27px;
-    padding: 3rem;
-    background:
-        radial-gradient(
-            circle at top right,
-            rgba(34, 197, 94, 0.14),
-            transparent 35%
-        ),
-        rgba(2, 6, 23, 0.9);
-    border: 1px solid rgba(148, 163, 184, 0.12);
-    text-align: center;
-}
-
-.contact-content h3 {
-    font-size: clamp(1.8rem, 4vw, 2.6rem);
-    margin-bottom: 1rem;
-    color: var(--text);
-}
-
-.contact-content p {
-    max-width: 640px;
-    margin: 0 auto 2rem;
-    color: var(--text-muted);
-    line-height: 1.7;
-}
-
-.contact-actions {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 1rem;
-}
-
-.contact-actions .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.55rem;
-}
-
-@media (max-width: 768px) {
     .contact-content {
         padding: 2rem;
     }
@@ -1085,39 +1277,12 @@ p {
         width: 100%;
         justify-content: center;
     }
-}
 
-.btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.6rem;
-    padding: 0.85rem 1.25rem;
-    border-radius: 999px;
-    font-weight: 700;
-    text-decoration: none;
-    transition: all 0.25s ease;
-}
+    .orb {
+        width: 220px;
+        height: 220px;
 
-.btn-primary {
-    color: #020617;
-    background: linear-gradient(135deg, var(--primary), var(--primary-soft));
-    box-shadow: 0 0 30px rgba(34, 197, 94, 0.25);
-}
-
-.btn-primary:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 0 45px rgba(34, 197, 94, 0.4);
-}
-
-.btn-secondary {
-    color: var(--text);
-    background: rgba(15, 23, 42, 0.75);
-    border: 1px solid rgba(34, 197, 94, 0.25);
-}
-
-.btn-secondary:hover {
-    color: var(--primary);
-    transform: translateY(-3px);
-    border-color: rgba(34, 197, 94, 0.5);
+        filter: blur(10px);
+        opacity: 0.12;
+    }
 }
