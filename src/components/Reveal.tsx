@@ -1,24 +1,33 @@
-import { motion } from "framer-motion";
+import { motion, type MotionProps } from "framer-motion";
 import type { ReactNode } from "react";
 
 type RevealProps = {
-    children: ReactNode;
-    delay?: number;
+  children: ReactNode;
+  delay?: number;
+  className?: string;
 };
 
-export default function Reveal({ children, delay = 0 }: RevealProps) {
-    return (
-        <motion.div
-            initial={{ opacity: 0, y: 70 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.15 }}
-            transition={{
-                duration: 0.7,
-                delay,
-                ease: "easeOut",
-            }}
-        >
-            {children}
-        </motion.div>
-    );
+function Reveal({ children, delay = 0, className = "" }: RevealProps) {
+  const animation: MotionProps = {
+    initial: { opacity: 0, y: 24 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: {
+      once: true,
+      amount: 0.15,
+      margin: "0px 0px -80px 0px",
+    },
+    transition: {
+      duration: 0.45,
+      delay,
+      ease: "easeOut",
+    },
+  };
+
+  return (
+    <motion.div className={className} {...animation}>
+      {children}
+    </motion.div>
+  );
 }
+
+export default Reveal;
