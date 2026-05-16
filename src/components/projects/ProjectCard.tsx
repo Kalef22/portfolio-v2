@@ -5,6 +5,7 @@ type ProjectCardProps = {
     githubUrl?: string;
     demoUrl?: string;
     image: string;
+    onOpen: () => void;
 };
 
 function ProjectCard({
@@ -14,9 +15,20 @@ function ProjectCard({
     githubUrl,
     demoUrl,
     image,
+    onOpen,
 }: ProjectCardProps) {
     return (
-        <article className="project-card reveal">
+        <article
+            className="project-card"
+            onClick={onOpen}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(event) => {
+                if (event.key === "Enter" || event.key === " ") {
+                    onOpen();
+                }
+            }}
+        >
             {/* loading="lazy" La imagen no se carga hasta que está cerca de verse en pantalla. */}
             {/* decoding="async" El navegador puede decodificar la imagen sin bloquear tanto el render inicial. */}
             <img
@@ -40,13 +52,23 @@ function ProjectCard({
 
                 <div className="project-links">
                     {githubUrl && (
-                        <a href={githubUrl} target="_blank" rel="noreferrer">
+                        <a
+                            href={githubUrl}
+                            target="_blank"
+                            rel="noreferrer"
+                            onClick={(event) => event.stopPropagation()}
+                        >
                             GitHub
                         </a>
                     )}
 
                     {demoUrl && (
-                        <a href={demoUrl} target="_blank" rel="noreferrer">
+                        <a
+                            href={demoUrl}
+                            target="_blank"
+                            rel="noreferrer"
+                            onClick={(event) => event.stopPropagation()}
+                        >
                             Demo
                         </a>
                     )}

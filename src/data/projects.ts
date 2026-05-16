@@ -8,7 +8,7 @@ export const projects = [
         description:
             'Aplicación e-commerce para joyería con frontend en React, backend en Node.js/Express y base de datos MongoDB.',
         technologies: ['React', 'Node.js', 'Express', 'MongoDB', 'API REST'],
-        githubUrl: 'https://github.com/',
+        githubUrl: 'https://github.com/Kalef22/e-commerce',
         demoUrl: 'https://demo.com',
         image: tiendaImage,
     },
@@ -26,7 +26,7 @@ export const projects = [
         description:
             'Portfolio personal desarrollado con React, TypeScript y Vite, desplegado con Vercel.',
         technologies: ['React', 'TypeScript', 'Vite', 'Vercel'],
-        githubUrl: 'https://github.com/',
+        githubUrl: 'https://github.com/Kalef22/portfolio-v2',
         demoUrl: 'https://demo.com',
         image: portfolioImage,
     },
