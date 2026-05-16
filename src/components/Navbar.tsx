@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Logo from "../assets/marcakalef.svg?react";
+import { useActiveSection } from "../hooks/useActiveSection";
 
 const navLinks = [
     { label: "Sobre mí", href: "#about" },
@@ -9,13 +10,13 @@ const navLinks = [
 ];
 
 function Navbar() {
+    const activeSection = useActiveSection();
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 24);
-            setIsMenuOpen(false);
         };
 
         handleScroll();
@@ -26,6 +27,20 @@ function Navbar() {
             window.removeEventListener("scroll", handleScroll);
         };
     }, []);
+
+    useEffect(() => {
+        if (!isMenuOpen) return;
+
+        const closeMenuOnScroll = () => {
+            setIsMenuOpen(false);
+        };
+
+        window.addEventListener("scroll", closeMenuOnScroll);
+
+        return () => {
+            window.removeEventListener("scroll", closeMenuOnScroll);
+        };
+    }, [isMenuOpen]);
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
@@ -80,7 +95,15 @@ function Navbar() {
                 <ul className="navbar-links">
                     {navLinks.map((link) => (
                         <li key={link.href}>
-                            <a href={link.href} onClick={closeMenu}>
+                            <a
+                                href={link.href}
+                                className={
+                                    activeSection === link.href.replace("#", "")
+                                        ? "nav-link active"
+                                        : "nav-link"
+                                }
+                                onClick={closeMenu}
+                            >
                                 {link.label}
                             </a>
                         </li>
