@@ -19,7 +19,13 @@ function ProjectCard({
         <article className="project-card reveal">
             {/* loading="lazy" La imagen no se carga hasta que está cerca de verse en pantalla. */}
             {/* decoding="async" El navegador puede decodificar la imagen sin bloquear tanto el render inicial. */}
-            <img src={image} alt={title} loading="lazy" decoding="async" className="project-image" />
+            <img
+                src={image}
+                alt={title}
+                loading="lazy"
+                decoding="async"
+                className="project-image"
+            />
 
             <div className="project-content">
                 <h3>{title}</h3>

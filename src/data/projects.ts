@@ -1,3 +1,7 @@
+import tiendaImage from "../assets/projects/tienda.svg";
+import travelGenieImage from "../assets/projects/travelgenie.webp";
+import portfolioImage from "../assets/projects/portfolio.webp";
+
 export const projects = [
     {
         title: 'E-commerce MERN',
@@ -6,7 +10,7 @@ export const projects = [
         technologies: ['React', 'Node.js', 'Express', 'MongoDB', 'API REST'],
         githubUrl: 'https://github.com/',
         demoUrl: 'https://demo.com',
-        image: '/projects/tienda.svg',
+        image: tiendaImage,
     },
     {
         title: 'Travel Genie',
@@ -15,7 +19,7 @@ export const projects = [
         technologies: ['AWS Lambda', 'API Gateway', 'Amazon Bedrock', 'JavaScript'],
         githubUrl: 'https://github.com/',
         demoUrl: 'https://demo.com',
-        image: '/projects/travelgenie.jpg',
+        image: travelGenieImage,
     },
     {
         title: 'Portfolio Web',
@@ -24,6 +28,6 @@ export const projects = [
         technologies: ['React', 'TypeScript', 'Vite', 'Vercel'],
         githubUrl: 'https://github.com/',
         demoUrl: 'https://demo.com',
-        image: '/projects/portfolio.jpg',
+        image: portfolioImage,
     },
 ];
