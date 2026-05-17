@@ -37,12 +37,21 @@
 ```txt
 src/
 ├── assets/
-│   └── marcakalef.svg
+│   ├── marcakalef.svg
+│   │
+│   └── projects/
+│       ├── tienda.svg
+│       ├── travelgenie.webp
+│       └── portfolio.webp
 │
 ├── components/
 │   ├── cloud/
 │   │   ├── CloudSection.tsx
 │   │   └── cloudData.ts
+│   │
+│   ├── projects/
+│   │   ├── ProjectCard.tsx
+│   │   └── ProjectModal.tsx
 │   │
 │   ├── timeline/
 │   │   ├── Timeline.tsx
@@ -56,7 +65,6 @@ src/
 │   │
 │   ├── Navbar.tsx
 │   ├── Footer.tsx
-│   ├── ProjectCard.tsx
 │   └── Reveal.tsx
 │
 ├── data/
@@ -64,6 +72,7 @@ src/
 │   └── skills.ts
 │
 ├── hooks/
+│   ├── useActiveSection.ts
 │   └── useScrollReveal.ts (pendiente de eliminación)
 │
 ├── sections/
@@ -101,148 +110,6 @@ Se creó un componente reutilizable usando Framer Motion.
 - animaciones premium tipo SaaS
 - optimización con `once: true`
 
-### Uso
-
-```tsx
-<Reveal delay={0.15}>
-  <Component />
-</Reveal>
-```
-
----
-
-# Refactorización del sistema reveal
-
-## Eliminado sistema antiguo
-
-Migración desde:
-
-- CSS reveal animations
-- IntersectionObserver manual
-- clases `.reveal`
-
-Hacia:
-
-- Framer Motion
-- Reveal component
-- animaciones declarativas
-
-## Limpieza realizada
-
-Eliminado:
-
-- className="reveal"
-- reveal.active
-- animaciones reveal antiguas
-
-Pendiente:
-
-- eliminar `useScrollReveal.ts`
-
----
-
-# Sistema visual premium global
-
-## Nuevos componentes UI
-
-### ScrollProgress.tsx
-
-Barra de progreso superior sincronizada con el scroll.
-
-### CursorGlow.tsx
-
-Glow dinámico que sigue el cursor utilizando transformaciones optimizadas.
-
-### GradientOrbs.tsx
-
-Blobs/glows animados de fondo con estética futurista SaaS.
-
----
-
-# Optimización de rendimiento
-
-## Mejoras realizadas
-
-### Cursor Glow
-
-Optimizado:
-
-- eliminación de re-renders continuos
-- manipulación directa del DOM
-- reducción de blur
-- mejor uso de GPU
-
-### Gradient Orbs
-
-Optimizado:
-
-- blur reducido
-- tamaño reducido en mobile
-- uso de `will-change`
-
-### Reveal.tsx
-
-Optimizado:
-
-- `viewport.once`
-- menos animaciones simultáneas
-- reducción de redistribuciones forzadas
-
-### Mobile performance
-
-Se redujeron efectos gráficos en dispositivos móviles para mejorar Lighthouse.
-
----
-
-# Mejoras visuales globales
-
-## Global.css reorganizado
-
-El archivo CSS fue completamente:
-
-- documentado
-- agrupado
-- comentado
-- optimizado
-
-### Nueva estructura
-
-- Variables globales
-- Reset/base
-- Efectos visuales globales
-- Componentes reutilizables
-- Navbar
-- Hero
-- About
-- Skills
-- Projects
-- Timeline
-- Cloud
-- Contact
-- Footer
-- Animaciones
-- Responsive global
-
----
-
-# Breakpoints globales definidos
-
-## Small
-
-- 272px → 768px
-
-## Medium
-
-- 769px → 992px
-
-## Large
-
-- 993px → 1200px
-
-## Extra Large
-
-- 1201px → 1900px
-
 ---
 
 # Navbar premium avanzada
@@ -257,6 +124,14 @@ El archivo CSS fue completamente:
 - border premium
 - shadow on scroll
 
+### Active Section Indicator
+
+Nuevo sistema de detección automática de sección activa usando:
+
+```txt
+useActiveSection.ts
+```
+
 ### Navbar responsive
 
 Desktop:
@@ -270,16 +145,17 @@ Mobile:
 - cierre automático al hacer click fuera
 - cierre automático al hacer scroll
 - hover premium en opciones mobile
+- active state premium
 - mejor UX responsive
 
-### Logo navbar
+### Correcciones mobile realizadas
 
-Mejorado:
-
-- tamaño
-- integración visual
-- hover elegante
-- glow suave SVG
+- corrección de scroll horizontal
+- corrección de alineación del logo
+- corrección del botón hamburguesa
+- corrección de animación de la X
+- corrección del menú desplegable
+- corrección del layout responsive
 
 ---
 
@@ -287,174 +163,66 @@ Mejorado:
 
 ## Mejoras realizadas
 
-- Integración con Reveal
-- Hero cleaner structure
-- Responsive mejorado
 - Glow cinematográfico
-- Mejor jerarquía visual
 - Hero premium badge
 - Gradient text
-- Optimización de Reveal
-- Mejor distribución mobile
+- Responsive mejorado
+- corrección de overflow horizontal
 
 ## Hero badge
-
-Nueva badge premium:
 
 ```txt
 Disponible para proyectos frontend, full-stack y cloud
 ```
 
-## Hero gradient text
-
-El apellido utiliza gradient text premium con glow suave.
-
-## Hero stats
-
-Se añadieron:
-
-- glassmorphism cards
-- hover premium
-- responsive 2x2 en móvil
-- mejor optimización visual
-
----
-
-# Skills actualizadas
-
-## Mejoras
-
-- Stagger animation por skill
-- Reveal individual por card
-- Mejor experiencia visual
-- Aparición progresiva
-- Hover premium
-- Glassmorphism cards
-
 ---
 
 # Projects actualizados
 
-## Mejoras
+## Refactorización de arquitectura
 
-- Reveal individual por proyecto
-- Stagger animations
-- Mejor fluidez visual
-- Entrada progresiva de cards
-- Hover cinematográfico
+Nueva estructura:
 
----
+```txt
+components/projects/
+```
 
-# Contact actualizado
+### Nuevos componentes
 
-## Mejoras
+- ProjectCard.tsx
+- ProjectModal.tsx
 
-- CTA premium
-- Botones glassmorphism
-- Glow effects
-- Responsive mejorado
-- Mejor jerarquía visual
+## Sistema modal premium
 
----
+### Características
 
-# Diseño visual actual
+- apertura mediante click en card
+- animaciones Framer Motion
+- overlay blur cinematográfico
+- glassmorphism modal
+- imagen ampliada
+- cierre con ESC
+- cierre click fuera
+- bloqueo scroll del body
+- responsive mobile
+- scrollbar custom
+- glow interno dinámico
 
-## Identidad visual consolidada
+## Optimización de imágenes
 
-El portfolio ya tiene una apariencia:
+Migración de imágenes hacia:
 
-- SaaS moderno
-- AI startup
-- cloud oriented
-- frontend premium
-- recruiter friendly
-- dark futuristic UI
-- glassmorphism
-- luxury-tech aesthetic
-- cinematic UI
+```txt
+src/assets/projects/
+```
 
-### Inspiración visual
+### Mejoras
 
-- Vercel
-- Linear
-- Stripe
-- NVIDIA
-- dashboards cloud
-- AI startups
-- plataformas SaaS modernas
-
----
-
-# Tecnologías destacadas
-
-## Frontend
-
-- React
-- TypeScript
-- Vite
-- Framer Motion
-
-## Backend
-
-- Node.js
-- Express
-- MongoDB
-
-## Cloud
-
-- AWS
-- Lambda
-- API Gateway
-- Bedrock
-
----
-
-# Proyectos actuales
-
-## E-commerce MERN
-
-- React
-- Node.js
-- Express
-- MongoDB
-- API REST
-
-## Travel Genie
-
-- AWS Lambda
-- API Gateway
-- Amazon Bedrock
-- JavaScript
-
-## Portfolio Web
-
-- React
-- TypeScript
-- Vite
-- Framer Motion
-- Vercel
-
----
-
-# Lighthouse / Rendimiento
-
-## Mejoras realizadas
-
-Se optimizó:
-
-- renderizado inicial
-- efectos GPU
-- animaciones simultáneas
-- carga mobile
-- redistribuciones forzadas
-
-## Técnicas usadas
-
-- `will-change`
+- soporte Vite build
+- imports tipados
 - lazy loading
-- optimización Framer Motion
-- reducción de blur
-- degradación visual inteligente en mobile
+- optimización WebP
+- mejor rendimiento Lighthouse
 
 ---
 
@@ -466,19 +234,10 @@ Actualmente el portfolio ya:
 - tiene identidad visual sólida
 - transmite frontend moderno
 - transmite perfil cloud
-- transmite atención al detalle
-- tiene arquitectura frontend limpia
 - tiene UX/UI premium
 - tiene responsive estructurado
-- tiene animaciones modernas tipo SaaS
-- tiene navegación mobile premium
-- tiene estética futurista profesional
-
-Ya no parece:
-
-- un portfolio académico
-- una landing básica
-- un tutorial simple
+- tiene modal premium interactivo
+- tiene estructura frontend escalable
 
 ---
 
@@ -486,60 +245,9 @@ Ya no parece:
 
 ```bash
 feat(ui): add premium global visual effects
-perf(ui): optimizar efectos visuales globales
-fix(ui): corregir alineación del cursor glow
-perf(ui): optimizar efectos visuales para mobile
-perf(ui): reducir redistribuciones forzadas en animaciones
-perf(images): optimizar carga de imágenes del portfolio
-feat(ui): mejorar navbar con efecto glassmorphism
-style(ui): mejorar integración visual del logo en navbar
-feat(ui): añadir menú hamburguesa responsive en navbar
-style(css): reorganizar estilos globales y corregir navbar mobile
-style(ui): mejorar interacción táctil y estados focus
-feat(ui): cerrar menú mobile al interactuar fuera
-fix(ui): mejorar interacción hover del menú mobile
-feat(ui): mejorar hero con efectos cinematográficos
+fix(ui): corregir responsive y navegación mobile
+refactor(projects): reorganizar componentes de proyectos
+feat(projects): añadir modal premium de proyectos
+style(projects): mejorar animaciones y efectos del modal
+perf(images): optimizar imágenes de proyectos
 ```
-
----
-
-# Próximos pasos recomendados
-
-## UI / Frontend
-
-- Active section indicator
-- Mouse parallax
-- Floating particles
-- Advanced Framer Motion
-- Scroll progress improvements
-- Tilt effect en project cards
-- Shine hover effect
-- Image parallax
-- Cursor interactions avanzadas
-
-## Portfolio
-
-- Añadir screenshots optimizados WebP
-- Añadir demos reales
-- Añadir links GitHub reales
-- Añadir CV final optimizado
-- Añadir casos de estudio
-
-## SEO / Deploy
-
-- Deploy Vercel final
-- Conectar kalef.es
-- Open Graph
-- Metadata SEO
-- Sitemap.xml
-- Robots.txt
-- Favicon personalizado
-
-## Futuro
-
-- Blog técnico
-- CMS/headless
-- Dashboard admin
-- Backend propio
-- Sistema dinámico de proyectos
-- Panel CMS portfolio
