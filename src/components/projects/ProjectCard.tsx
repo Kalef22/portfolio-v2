@@ -23,6 +23,7 @@ function ProjectCard({
             onClick={onOpen}
             role="button"
             tabIndex={0}
+            aria-label={`Ver detalles del proyecto ${title}`}
             onKeyDown={(event) => {
                 if (event.key === "Enter" || event.key === " ") {
                     onOpen();

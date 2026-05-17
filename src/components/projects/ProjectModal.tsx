@@ -49,7 +49,10 @@ function ProjectModal({ isOpen, onClose, project }: ProjectModalProps) {
                         initial={{ opacity: 0, y: 40, scale: 0.96 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 40, scale: 0.96 }}
-                        transition={{ duration: 0.25, ease: "easeOut" }}
+                        transition={{
+                            duration: 0.38,
+                            ease: [0.22, 1, 0.36, 1],
+                        }}
                         onClick={(event) => event.stopPropagation()}
                     >
                         <button
@@ -80,13 +83,21 @@ function ProjectModal({ isOpen, onClose, project }: ProjectModalProps) {
 
                             <div className="project-links">
                                 {project.githubUrl && (
-                                    <a href={project.githubUrl} target="_blank" rel="noreferrer">
+                                    <a
+                                        href={project.githubUrl}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                    >
                                         GitHub
                                     </a>
                                 )}
 
                                 {project.demoUrl && (
-                                    <a href={project.demoUrl} target="_blank" rel="noreferrer">
+                                    <a
+                                        href={project.demoUrl}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                    >
                                         Demo
                                     </a>
                                 )}
