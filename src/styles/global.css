@@ -1487,6 +1487,33 @@ contact-actions svg {
     }
 }
 
+/* ================================
+   Reduced motion accessibility
+================================ */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .scroll-progress,
+    .cursor-glow,
+    .gradient-orb {
+        display: none;
+    }
+
+    .reveal,
+    .reveal.active {
+        opacity: 1;
+        transform: none;
+    }
+}
+
 /* =========================================================
    16. RESPONSIVE
    Ajustes para mobile:
