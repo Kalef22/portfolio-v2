@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 type ProjectModalProps = {
@@ -15,10 +15,13 @@ type ProjectModalProps = {
 };
 
 function ProjectModal({ isOpen, onClose, project }: ProjectModalProps) {
+    const closeButtonRef = useRef<HTMLButtonElement>(null);
+
     useEffect(() => {
         if (!isOpen) return;
 
         document.body.style.overflow = "hidden";
+        closeButtonRef.current?.focus();
 
         const handleEscape = (event: KeyboardEvent) => {
             if (event.key === "Escape") {
@@ -43,9 +46,13 @@ function ProjectModal({ isOpen, onClose, project }: ProjectModalProps) {
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     onClick={onClose}
+                    role="presentation"
                 >
                     <motion.article
                         className="project-modal"
+                        role="dialog"
+                        aria-modal="true"
+                        aria-labelledby="project-modal-title"
                         initial={{ opacity: 0, y: 40, scale: 0.96 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 40, scale: 0.96 }}
@@ -56,9 +63,10 @@ function ProjectModal({ isOpen, onClose, project }: ProjectModalProps) {
                         onClick={(event) => event.stopPropagation()}
                     >
                         <button
+                            ref={closeButtonRef}
                             className="project-modal-close"
                             type="button"
-                            aria-label="Cerrar modal"
+                            aria-label="Cerrar modal del proyecto"
                             onClick={onClose}
                         >
                             ×
@@ -66,12 +74,12 @@ function ProjectModal({ isOpen, onClose, project }: ProjectModalProps) {
 
                         <img
                             src={project.image}
-                            alt={project.title}
+                            alt={`Vista previa del proyecto ${project.title}`}
                             className="project-modal-image"
                         />
 
                         <div className="project-modal-content">
-                            <h3>{project.title}</h3>
+                            <h3 id="project-modal-title">{project.title}</h3>
 
                             <p>{project.description}</p>
 
@@ -87,6 +95,7 @@ function ProjectModal({ isOpen, onClose, project }: ProjectModalProps) {
                                         href={project.githubUrl}
                                         target="_blank"
                                         rel="noreferrer"
+                                        aria-label={`Ver código de ${project.title} en GitHub`}
                                     >
                                         GitHub
                                     </a>
@@ -97,6 +106,7 @@ function ProjectModal({ isOpen, onClose, project }: ProjectModalProps) {
                                         href={project.demoUrl}
                                         target="_blank"
                                         rel="noreferrer"
+                                        aria-label={`Ver demo de ${project.title}`}
                                     >
                                         Demo
                                     </a>
