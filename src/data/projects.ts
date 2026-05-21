@@ -1,4 +1,4 @@
-import tiendaImage from "../assets/projects/tienda.svg";
+import tiendaImage from "../assets/projects/tienda.webp";
 import travelGenieImage from "../assets/projects/travelgenie.webp";
 import portfolioImage from "../assets/projects/portfolio.webp";
 
