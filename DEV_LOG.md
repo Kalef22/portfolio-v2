@@ -195,22 +195,16 @@ src/
 
 ## Pendientes recomendados
 
-- Revisar los enlaces placeholder de demos (`https://demo.com`) antes de publicar.
-- Revisar enlaces placeholder de proyectos, especialmente el GitHub generico de Travel Genie.
 - Medir Lighthouse en produccion, no en Vite dev, antes de decidir nuevas optimizaciones.
 - Revisar el impacto real de los glows/orbs en mobile tras despliegue.
 
 ## Commits registrados en el desarrollo
 
 ```bash
-feat(ui): add premium global visual effects
-fix(ui): corregir responsive y navegacion mobile
-refactor(projects): reorganizar componentes de proyectos
-feat(projects): anadir modal premium de proyectos
-style(projects): mejorar animaciones y efectos del modal
-perf(images): optimizar imagenes de proyectos
-feat(contacto): mejorar seccion premium de contacto
-feat(footer): anadir footer premium responsive
-fix(ui): corregir modal overlay y restaurar efectos de fondo
-perf(ui): reducir bundle inicial y optimizar animaciones
+feat(a11y): mejorar accesibilidad del modal de proyectos
+feat(a11y): respetar preferencias de movimiento reducido
+fix(projects): mejorar responsive del modal de proyectos
+integrar tipografia Inter de Google Fonts
+perf(ui): optimizar el renderizado inicial y los efectos visuales
+fix: corregir barra de progreso y efectos visuales
 ```
