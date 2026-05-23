@@ -34,7 +34,7 @@ function ScrollProgress() {
     return (
         <div
             className="scroll-progress"
-            style={{ transform: `scaleX(${progress})` }}
+            style={{ width: `${progress * 100}%` }}
         />
     );
 }
