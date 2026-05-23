@@ -17,34 +17,34 @@ export const timelineData = [
         description:
             "Formación intensiva de aproximadamente 4 meses en fundamentos cloud, arquitectura de soluciones, servicios AWS e infraestructura escalable.",
     },
-    {
-        period: "2025",
-        title: "Data Engineer con AWS",
-        description:
-            "Curso de aproximadamente 3 meses orientado a fundamentos de ingeniería de datos en AWS, procesamiento de datos y servicios cloud relacionados.",
-    },
+    // {
+    //     period: "2025",
+    //     title: "Data Engineer con AWS",
+    //     description:
+    //         "Curso de aproximadamente 3 meses orientado a fundamentos de ingeniería de datos en AWS, procesamiento de datos y servicios cloud relacionados.",
+    // },
     {
         period: "Enero - Marzo 2026",
         title: "Bootcamp Full-Stack",
         description:
             "Formación práctica en desarrollo full-stack con tecnologías modernas como React, Angular, Node.js, Express, MongoDB, APIs REST y Git.",
     },
-    {
-        period: "Abril - Mayo 2026",
-        title: "Piscina 42 Madrid",
-        description:
-            "Proceso intensivo de selección centrado en C, shell, lógica de programación, resolución de problemas y aprendizaje autónomo.",
-    },
-    {
-        period: "Actualidad",
-        title: "Formación en Inglés",
-        description:
-            "Actualmente mejorando el nivel de inglés para entornos tecnológicos, documentación técnica y comunicación profesional internacional.",
-    },
+    // {
+    //     period: "Abril - Mayo 2026",
+    //     title: "Piscina 42 Madrid",
+    //     description:
+    //         "Proceso intensivo de selección centrado en C, shell, lógica de programación, resolución de problemas y aprendizaje autónomo.",
+    // },
+    // {
+    //     period: "Actualidad",
+    //     title: "Formación en Inglés",
+    //     description:
+    //         "Actualmente mejorando el nivel de inglés para entornos tecnológicos, documentación técnica y comunicación profesional internacional.",
+    // },
     {
         period: "Desde mayo 2026",
-        title: "Alumno en 42 Madrid",
+        title: "Alumno en 42 Madrid Fundación Telefonica",
         description:
-            "Aceptado como alumno en 42 Madrid, con inicio previsto el 18 de mayo de 2026 para continuar desarrollando habilidades avanzadas en programación.",
+            "Inicio de nueva etapa en 42 Madrid Fundación Telefónica, continuando el desarrollo de habilidades avanzadas en programación, arquitectura de software y resolución de problemas mediante aprendizaje práctico y proyectos reales.",
     },
 ];

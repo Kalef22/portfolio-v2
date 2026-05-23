@@ -19,10 +19,11 @@ function Hero() {
                     <h2>Full-Stack Web Developer | AWS Cloud Practitioner</h2>
 
                     <p>
-                        Desarrollo aplicaciones web modernas utilizando
-                        JavaScript, React, Node.js y Express. Actualmente
-                        refuerzo mis conocimientos en TypeScript, arquitectura
-                        backend y servicios cloud con AWS.
+                        Desarrollador web enfocado en crear aplicaciones
+                        modernas, escalables y bien estructuradas. Trabajo
+                        principalmente con React, Angular, TypeScript, Node.js y
+                        Express, combinando frontend interactivo, backend
+                        robusto y experiencia cloud sobre AWS.
                     </p>
 
                     <div className="hero-buttons">
