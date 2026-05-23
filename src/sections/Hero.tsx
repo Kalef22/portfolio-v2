@@ -75,6 +75,10 @@ function Hero() {
                                 <h3>AWS</h3>
                                 <p>Cloud</p>
                             </div>
+                            <div className="hero-stat">
+                                <h3>Projects</h3>
+                                <p>5</p>
+                            </div>
 
                             <div className="hero-stat">
                                 <h3>MERN</h3>

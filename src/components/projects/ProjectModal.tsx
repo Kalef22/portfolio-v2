@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
 type ProjectModalProps = {
@@ -10,6 +11,15 @@ type ProjectModalProps = {
         technologies: string[];
         githubUrl?: string;
         demoUrl?: string;
+
+        status?: string;
+
+        demoCredentials?: {
+            username: string;
+            password: string;
+        };
+
+        demoNotice?: string;
         image: string;
     } | null;
 };
@@ -37,7 +47,7 @@ function ProjectModal({ isOpen, onClose, project }: ProjectModalProps) {
         };
     }, [isOpen, onClose]);
 
-    return (
+    return createPortal(
         <AnimatePresence>
             {isOpen && project && (
                 <motion.div
@@ -80,6 +90,11 @@ function ProjectModal({ isOpen, onClose, project }: ProjectModalProps) {
 
                         <div className="project-modal-content">
                             <h3 id="project-modal-title">{project.title}</h3>
+                            {project.status && (
+                                <span className="project-status-badge">
+                                    {project.status}
+                                </span>
+                            )}
 
                             <p>{project.description}</p>
 
@@ -112,11 +127,33 @@ function ProjectModal({ isOpen, onClose, project }: ProjectModalProps) {
                                     </a>
                                 )}
                             </div>
+                            {project.demoCredentials && (
+                                <div className="project-demo-access">
+                                    <h4>Acceso demo</h4>
+
+                                    <p>
+                                        <strong>Usuario:</strong>{" "}
+                                        {project.demoCredentials.username}
+                                    </p>
+
+                                    <p>
+                                        <strong>Contraseña:</strong>{" "}
+                                        {project.demoCredentials.password}
+                                    </p>
+
+                                    {project.demoNotice && (
+                                        <span className="project-demo-notice">
+                                            {project.demoNotice}
+                                        </span>
+                                    )}
+                                </div>
+                            )}
                         </div>
                     </motion.article>
                 </motion.div>
             )}
-        </AnimatePresence>
+        </AnimatePresence>,
+        document.body,
     );
 }
 

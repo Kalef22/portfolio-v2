@@ -429,7 +429,7 @@ a:focus-visible {
     border-radius: 999px;
     box-shadow: 0 0 14px rgba(34, 197, 94, 0.7);
     opacity: 0;
-
+    transform: translateX(-50%) scaleX(0);
     transition:
         opacity 0.25s ease,
         transform 0.25s ease;
@@ -994,11 +994,6 @@ a:focus-visible {
     border-color: var(--primary);
 }
 
-/* Overlay del modal:
-   - cubre toda la pantalla
-   - queda por encima del contenido y navbar
-   - permite scroll cuando el contenido es alto
-*/
 .project-modal-overlay {
     position: fixed;
     inset: 0;
@@ -1010,32 +1005,33 @@ a:focus-visible {
 
     padding: 8rem 1.5rem 3rem;
     overflow-y: auto;
+    display: flex;
 
-    background: rgba(2, 6, 23, 0.86);
+    background: rgba(2, 6, 23, 0.72);
 
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
-
-    isolation: isolate;
+    overflow-y: auto;
 }
 
-/* Contenedor principal del modal */
 .project-modal {
     position: relative;
-    z-index: 1;
 
-    width: min(980px, 100%);
-    margin: 0 auto 3rem;
+    width: min(800px, 100%);
+    max-width: 980px;
+    max-height: none;
+    margin: 0 auto;
 
-    overflow: hidden;
+    overflow-y: auto;
 
-    background: rgba(15, 23, 42, 0.98);
+    background: rgba(15, 23, 42, 0.92);
     border: 1px solid rgba(34, 197, 94, 0.16);
     border-radius: 28px;
 
     box-shadow:
         0 30px 80px rgba(0, 0, 0, 0.45),
         0 0 40px rgba(34, 197, 94, 0.08);
+    overflow: hidden;
 }
 
 .project-modal::before {
@@ -1408,7 +1404,7 @@ a:focus-visible {
     gap: 0.6rem;
 }
 
-.contact-actions svg {
+contact-actions svg {
     font-size: 1.1rem;
 }
 
@@ -1565,8 +1561,7 @@ a:focus-visible {
 
     .scroll-progress,
     .cursor-glow,
-    .gradient-orbs,
-    .orb {
+    .gradient-orb {
         display: none;
     }
 
@@ -1915,35 +1910,25 @@ a:focus-visible {
     html {
         overflow-x: hidden;
     }
-    /* ===============================
-       MODAL DE PROYECTOS MOBILE
-       El modal queda por encima de navbar/fondo
-       y el scroll ocurre en el overlay.
-       =============================== */
-
     .project-modal-overlay {
         z-index: 99999;
-
-        padding: 6.5rem 1rem 2rem;
-
-        background: rgba(2, 6, 23, 0.96);
-
+        padding: 8.5rem 1rem 2rem;
+        overflow-y: auto;
+        background: rgba(2, 6, 23, 0.88);
         backdrop-filter: blur(18px);
-        -webkit-backdrop-filter: blur(18px);
+        align-items: flex-start;
     }
 
     .project-modal {
-        width: 100%;
-        margin-bottom: 2rem;
-
         border-radius: 24px;
-
-        background: rgba(15, 23, 42, 0.99);
+        width: 100%;
+        max-height: none;
+        overflow: visible;
     }
 
     .project-modal-image {
         height: 220px;
-        max-height: 220px;
+        max-height: 240px;
         object-fit: cover;
     }
 

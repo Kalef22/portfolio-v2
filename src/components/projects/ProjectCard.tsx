@@ -5,6 +5,7 @@ type ProjectCardProps = {
     githubUrl?: string;
     demoUrl?: string;
     image: string;
+    status?: string;
     onOpen: () => void;
 };
 
@@ -15,6 +16,7 @@ function ProjectCard({
     githubUrl,
     demoUrl,
     image,
+    status,
     onOpen,
 }: ProjectCardProps) {
     return (
@@ -42,6 +44,9 @@ function ProjectCard({
 
             <div className="project-content">
                 <h3>{title}</h3>
+                {status && (
+                    <span className="project-card-status">{status}</span>
+                )}
 
                 <p>{description}</p>
 
