@@ -1,5 +1,4 @@
-import { motion, type MotionProps } from "framer-motion";
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 
 type RevealProps = {
   children: ReactNode;
@@ -8,25 +7,13 @@ type RevealProps = {
 };
 
 function Reveal({ children, delay = 0, className = "" }: RevealProps) {
-  const animation: MotionProps = {
-    initial: { opacity: 0, y: 24 },
-    whileInView: { opacity: 1, y: 0 },
-    viewport: {
-      once: true,
-      amount: 0.15,
-      margin: "0px 0px -80px 0px",
-    },
-    transition: {
-      duration: 0.45,
-      delay,
-      ease: "easeOut",
-    },
-  };
+  const revealClassName = ["reveal", className].filter(Boolean).join(" ");
+  const style = { "--reveal-delay": `${delay}s` } as CSSProperties;
 
   return (
-    <motion.div className={className} {...animation}>
+    <div className={revealClassName} style={style}>
       {children}
-    </motion.div>
+    </div>
   );
 }
 

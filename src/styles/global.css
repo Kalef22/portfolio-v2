@@ -75,8 +75,8 @@ body {
             circle at top left,
             rgba(34, 197, 94, 0.14),
             transparent 30%
-        ), */
-        /* radial-gradient(
+        ),
+        radial-gradient(
             circle at bottom right,
             rgba(34, 197, 94, 0.08),
             transparent 25%
@@ -116,6 +116,25 @@ p {
 section h2 {
     margin-bottom: 3rem;
     font-size: 2.5rem;
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+        opacity 0.45s ease,
+        transform 0.45s ease;
+    transition-delay: var(--reveal-delay, 0s);
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+section:not(.hero) {
+    content-visibility: auto;
+    contain-intrinsic-size: 900px;
 }
 
 p {
@@ -166,67 +185,77 @@ a:focus-visible {
 
 .cursor-glow {
     position: fixed;
-    z-index: 0;
+    z-index: 20;
 
-    width: 220px;
-    height: 220px;
+    width: 260px;
+    height: 260px;
 
     pointer-events: none;
     border-radius: 999px;
 
     background: radial-gradient(
         circle,
-        rgba(34, 197, 94, 0.16),
-        rgba(34, 197, 94, 0.06) 35%,
+        rgba(67, 225, 125, 0.24),
+        rgba(34, 197, 94, 0.1) 35%,
         transparent 70%
     );
 
-    filter: blur(10px);
-    opacity: 0.8;
+    filter: blur(14px);
+    opacity: 0.9;
+    mix-blend-mode: screen;
     will-change: transform;
 }
 
 .gradient-orbs {
     position: fixed;
     inset: 0;
-    z-index: -1;
+    z-index: 0;
 
     overflow: hidden;
+    opacity: 0.9;
     pointer-events: none;
+    mix-blend-mode: screen;
 }
 
 .orb {
     position: absolute;
 
-    width: 360px;
-    height: 360px;
+    width: 760px;
+    height: 760px;
 
     border-radius: 999px;
-    filter: blur(15px);
-    opacity: 0.22;
+    filter: blur(85px);
+    opacity: 0.72;
 
-    animation: orbFloat 16s ease-in-out infinite alternate;
     will-change: transform;
 }
 
 .orb-1 {
-    top: 8%;
-    left: -120px;
-    background: rgba(34, 197, 94, 0.5);
+    top: -240px;
+    left: -260px;
+    background: radial-gradient(
+        circle,
+        rgba(34, 197, 94, 0.7),
+        rgba(34, 197, 94, 0.28) 42%,
+        transparent 70%
+    );
+    animation: orbDriftLeft 16s ease-in-out infinite alternate;
 }
 
 .orb-2 {
-    top: 38%;
-    right: -140px;
-    background: rgba(59, 130, 246, 0.35);
-    animation-delay: 1s;
+    top: -180px;
+    right: -280px;
+    background: radial-gradient(
+        circle,
+        rgba(37, 99, 235, 0.55),
+        rgba(14, 165, 233, 0.2) 42%,
+        transparent 72%
+    );
+    animation: orbDriftRight 18s ease-in-out infinite alternate;
 }
 
 .orb-3 {
-    bottom: -140px;
-    left: 35%;
-    background: rgba(16, 185, 129, 0.35);
-    animation-delay: 3s;
+    display: none;
 }
 
 /* =========================================================
@@ -248,11 +277,11 @@ a:focus-visible {
     text-decoration: none;
 
     transition:
-        transform 0.25s ease,
-        box-shadow 0.25s ease,
-        border-color 0.25s ease,
-        color 0.25s ease,
-        background 0.25s ease;
+        transform 2s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 2s cubic-bezier(0.22, 1, 0.36, 1),
+        border-color 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+        color 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+        background 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .btn-primary {
@@ -313,8 +342,8 @@ a:focus-visible {
 
     transition:
         top 0.25s ease,
-        background 0.25s ease,
-        border-color 0.25s ease,
+        background 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+        border-color 0.4s cubic-bezier(0.22, 1, 0.36, 1),
         box-shadow 0.25s ease;
 }
 
@@ -338,8 +367,8 @@ a:focus-visible {
     border-radius: 18px;
 
     transition:
-        transform 0.25s ease,
-        background 0.25s ease;
+        transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+        background 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .navbar-logo:hover {
@@ -353,7 +382,7 @@ a:focus-visible {
     height: auto;
 
     transition:
-        transform 0.25s ease,
+        transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
         filter 0.25s ease;
 }
 
@@ -380,6 +409,11 @@ a:focus-visible {
     margin: 0;
 
     list-style: none;
+
+    transition:
+    color 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    background 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .navbar-links a {
@@ -432,7 +466,7 @@ a:focus-visible {
 
     transition:
         opacity 0.25s ease,
-        transform 0.25s ease;
+        transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .navbar-links a:hover::after {
@@ -472,7 +506,7 @@ a:focus-visible {
     border-radius: 999px;
 
     transition:
-        transform 0.25s ease,
+        transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
         opacity 0.25s ease;
 }
 
@@ -496,6 +530,7 @@ a:focus-visible {
 
 .hero {
     position: relative;
+    isolation: isolate;
 
     min-height: 100vh;
 
@@ -543,17 +578,32 @@ a:focus-visible {
     content: "";
 
     position: absolute;
-    inset: 0;
+    top: -180px;
+    left: -260px;
+    z-index: 0;
+
+    width: 760px;
+    height: 760px;
 
     background: radial-gradient(
-        circle at center,
-        rgba(34, 197, 94, 0.08),
-        transparent 60%
+        circle,
+        rgba(34, 197, 94, 0.62),
+        rgba(34, 197, 94, 0.22) 38%,
+        transparent 70%
     );
+    border-radius: 999px;
+    filter: blur(85px);
+    opacity: 0.75;
+
+    animation: heroOrbLeft 8s ease-in-out infinite alternate;
     pointer-events: none;
+    will-change: transform;
 }
 
 .hero-content {
+    position: relative;
+    z-index: 1;
+
     max-width: 900px;
 }
 
@@ -597,10 +647,10 @@ a:focus-visible {
     text-decoration: none;
 
     transition:
-        transform 0.3s ease,
-        box-shadow 0.3s ease,
-        background 0.3s ease,
-        color 0.3s ease;
+        transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+        background 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+        color 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .primary-button {
@@ -648,8 +698,8 @@ a:focus-visible {
     text-decoration: none;
 
     transition:
-        transform 0.3s ease,
-        color 0.3s ease;
+        transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+        color 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .hero-socials a:not(.cv-button):hover {
@@ -709,9 +759,9 @@ a:focus-visible {
     backdrop-filter: blur(10px);
 
     transition:
-        transform 0.3s ease,
-        border-color 0.3s ease,
-        box-shadow 0.3s ease;
+        transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+        border-color 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .hero-stat:hover {
@@ -738,24 +788,26 @@ a:focus-visible {
     content: "";
 
     position: absolute;
-    top: 10%;
-    left: 50%;
+    top: -130px;
+    right: -280px;
+    z-index: 0;
 
-    width: 500px;
-    height: 500px;
-
-    transform: translateX(-50%);
+    width: 820px;
+    height: 820px;
 
     background: radial-gradient(
         circle,
-        rgba(34, 197, 94, 0.14),
+        rgba(37, 99, 235, 0.48),
+        rgba(14, 165, 233, 0.16) 40%,
         transparent 70%
     );
+    border-radius: 999px;
+    filter: blur(90px);
+    opacity: 0.68;
 
-    filter: blur(60px);
-
-    z-index: -1;
+    animation: heroOrbRight 9s ease-in-out infinite alternate;
     pointer-events: none;
+    will-change: transform;
 }
 
 /* =========================================================
@@ -814,9 +866,9 @@ a:focus-visible {
     backdrop-filter: blur(12px);
 
     transition:
-        transform 0.3s ease,
-        border-color 0.3s ease,
-        box-shadow 0.3s ease;
+        transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+        border-color 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .skill-card:hover {
@@ -865,9 +917,9 @@ a:focus-visible {
     backdrop-filter: blur(12px);
 
     transition:
-        transform 0.3s ease,
-        border-color 0.3s ease,
-        box-shadow 0.3s ease;
+        transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+        border-color 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 
     position: relative;
     overflow: hidden;
@@ -891,7 +943,7 @@ a:focus-visible {
     );
 
     transform: skewX(-20deg);
-    transition: left 0.7s ease;
+    transition: left 0.9s cubic-bezier(0.22, 1, 0.36, 1);
 
     pointer-events: none;
 }
@@ -918,8 +970,8 @@ a:focus-visible {
     border-bottom: 1px solid var(--border);
 
     transition:
-        transform 0.5s ease,
-        filter 0.5s ease;
+        transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+        filter 0.7s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .project-card:hover .project-image {
@@ -981,10 +1033,10 @@ a:focus-visible {
     border-radius: 0.8rem;
 
     transition:
-        transform 0.3s ease,
-        background 0.3s ease,
-        border-color 0.3s ease,
-        color 0.3s ease;
+        transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+        background 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+        border-color 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+        color 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .project-links a:hover {
@@ -1101,8 +1153,8 @@ a:focus-visible {
     cursor: pointer;
 
     transition:
-        background 0.25s ease,
-        transform 0.25s ease;
+        background 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .project-modal-close:hover {
@@ -1243,9 +1295,9 @@ a:focus-visible {
     backdrop-filter: blur(10px);
 
     transition:
-        transform 0.3s ease,
-        border-color 0.3s ease,
-        box-shadow 0.3s ease;
+        transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+        border-color 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .timeline-content:hover {
@@ -1296,9 +1348,9 @@ a:focus-visible {
     border-radius: 1.25rem;
 
     transition:
-        transform 0.3s ease,
-        border-color 0.3s ease,
-        box-shadow 0.3s ease;
+        transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+        border-color 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .cloud-card:hover {
@@ -1522,13 +1574,43 @@ a:focus-visible {
    Keyframes compartidos por fondos decorativos y estado activo.
    ========================================================= */
 
-@keyframes orbFloat {
+@keyframes orbDriftLeft {
     from {
         transform: translate3d(0, 0, 0) scale(1);
     }
 
     to {
-        transform: translate3d(40px, -50px, 0) scale(1.5);
+        transform: translate3d(160px, 120px, 0) scale(1.18);
+    }
+}
+
+@keyframes orbDriftRight {
+    from {
+        transform: translate3d(0, 0, 0) scale(1.05);
+    }
+
+    to {
+        transform: translate3d(-170px, 140px, 0) scale(1.22);
+    }
+}
+
+@keyframes heroOrbLeft {
+    from {
+        transform: translate3d(0, 0, 0) scale(1);
+    }
+
+    to {
+        transform: translate3d(220px, 150px, 0) scale(1.18);
+    }
+}
+
+@keyframes heroOrbRight {
+    from {
+        transform: translate3d(0, 0, 0) scale(1.05);
+    }
+
+    to {
+        transform: translate3d(-230px, 130px, 0) scale(1.2);
     }
 }
 
@@ -1563,11 +1645,24 @@ a:focus-visible {
         transition-duration: 0.01ms !important;
     }
 
-    .scroll-progress,
-    .cursor-glow,
-    .gradient-orbs,
-    .orb {
+    .scroll-progress {
         display: none;
+    }
+
+    .orb-1 {
+        animation: orbDriftLeft 16s ease-in-out infinite alternate !important;
+    }
+
+    .orb-2 {
+        animation: orbDriftRight 18s ease-in-out infinite alternate !important;
+    }
+
+    .hero::before {
+        animation: heroOrbLeft 8s ease-in-out infinite alternate !important;
+    }
+
+    .hero::after {
+        animation: heroOrbRight 9s ease-in-out infinite alternate !important;
     }
 
     .reveal,
@@ -1671,7 +1766,7 @@ a:focus-visible {
 
         transition:
             opacity 0.25s ease,
-            transform 0.25s ease;
+            transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     .navbar-toggle span {
@@ -1685,7 +1780,7 @@ a:focus-visible {
         border-radius: 999px;
 
         transition:
-            transform 0.25s ease,
+            transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
             opacity 0.25s ease;
     }
 
@@ -1751,9 +1846,9 @@ a:focus-visible {
         border-radius: 18px;
 
         transition:
-            background 0.25s ease,
-            color 0.25s ease,
-            transform 0.25s ease,
+            background 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+            color 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+            transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
             box-shadow 0.25s ease;
     }
 
@@ -1804,6 +1899,29 @@ a:focus-visible {
     .hero {
         min-height: 90vh;
         text-align: center;
+    }
+
+    .gradient-orbs {
+        display: none;
+    }
+
+    .hero::before,
+    .hero::after {
+        width: 520px;
+        height: 520px;
+        filter: blur(42px);
+        opacity: 0.5;
+        animation: none;
+    }
+
+    .hero::before {
+        top: -130px;
+        left: -260px;
+    }
+
+    .hero::after {
+        top: -90px;
+        right: -290px;
     }
 
     .hero h1 {

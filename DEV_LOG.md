@@ -14,7 +14,7 @@ Documento de seguimiento del estado actual del portfolio. Su objetivo es dejar c
 - React 19
 - TypeScript 6
 - Vite 8
-- Framer Motion
+- Framer Motion, cargado bajo demanda para el modal de proyectos
 - React Icons
 - vite-plugin-svgr
 - ESLint
@@ -43,9 +43,11 @@ src/
 |-- assets/
 |   |-- marcakalef.svg
 |   `-- projects/
-|       |-- tienda.svg
+|       |-- clinicsys.webp
+|       |-- tienda.webp
 |       |-- travelgenie.webp
-|       `-- portfolio.webp
+|       |-- portfolio.webp
+|       `-- under_construction.webp
 |-- components/
 |   |-- cloud/
 |   |   |-- CloudSection.tsx
@@ -87,14 +89,14 @@ src/
 
 ### Animaciones
 
-- Componente reutilizable `Reveal.tsx` con Framer Motion.
-- Animacion de entrada por viewport con `whileInView`.
+- Componente reutilizable `Reveal.tsx` basado en clases CSS.
+- Animacion de entrada por viewport mediante `useScrollReveal.ts` e IntersectionObserver.
 - Soporte de `delay` por elemento.
-- `viewport.once` activo para evitar repetir animaciones innecesariamente.
-- Barra superior de progreso de scroll con `ScrollProgress.tsx`.
+- Animacion de entrada de un solo uso mediante clase `.active`.
+- Barra superior de progreso de scroll con `ScrollProgress.tsx`, implementada con React y `requestAnimationFrame`.
 - Glow de cursor en desktop con `CursorGlow.tsx`.
-- Orbs de fondo con `GradientOrbs.tsx`.
-- Hook legacy `useScrollReveal.ts` usado por secciones con clase `.reveal`.
+- Orbs de fondo con `GradientOrbs.tsx` y glows animados en el Hero.
+- `useScrollReveal.ts` sigue activo para revelar elementos con clase `.reveal`.
 
 ### Navbar
 
@@ -113,6 +115,8 @@ src/
 - Badge de disponibilidad.
 - Texto con gradiente.
 - Metricas visuales del perfil.
+- Glows animados verde/azul integrados en el fondo del Hero.
+- Hero renderizado sin wrapper `Reveal` para favorecer el LCP.
 - Adaptacion responsive para mobile.
 
 ### Projects
@@ -120,12 +124,14 @@ src/
 - Datos centralizados en `src/data/projects.ts`.
 - Cards separadas en `ProjectCard.tsx`.
 - Modal separado en `ProjectModal.tsx`.
+- Modal cargado bajo demanda con `React.lazy` y `Suspense`.
 - Apertura del modal al hacer click en una card.
 - Accesibilidad basica por teclado en cards con Enter y Space.
 - Cierre del modal con Escape.
 - Cierre del modal al hacer click en el overlay.
 - Bloqueo del scroll del body mientras el modal esta abierto.
 - Imagen ampliada, tecnologias y enlaces GitHub/Demo dentro del modal.
+- Overlay del modal renderizado por portal en `document.body` para evitar conflictos de `z-index`.
 - Imagenes importadas desde `src/assets/projects/`.
 - `loading="lazy"` y `decoding="async"` en imagenes de cards.
 
@@ -171,6 +177,8 @@ src/
 - `overflow-x: hidden` para evitar scroll horizontal.
 - Estados accesibles con `focus-visible`.
 - Media query principal para pantallas menores de 768px.
+- `content-visibility: auto` en secciones fuera del Hero para reducir trabajo inicial del navegador.
+- Efectos visuales pesados reducidos en mobile para mejorar mediciones de rendimiento.
 
 ## Caracteristicas que cumple actualmente
 
@@ -183,15 +191,14 @@ src/
 - Contacto profesional con enlaces reales.
 - Build de produccion funcional.
 - Lint sin errores.
+- JS inicial optimizado al sacar Framer Motion del render inicial y cargar el modal en chunk separado.
 
 ## Pendientes recomendados
 
-- Optimizar `src/assets/projects/tienda.svg`: actualmente genera un asset grande en build, de unos 4.38 MB sin gzip.
 - Revisar los enlaces placeholder de demos (`https://demo.com`) antes de publicar.
 - Revisar enlaces placeholder de proyectos, especialmente el GitHub generico de Travel Genie.
-- Valorar eliminar o migrar completamente `useScrollReveal.ts` si todas las animaciones pasan a `Reveal.tsx`.
-- Anadir `public/cv.pdf` si el boton "Descargar CV" debe funcionar en produccion.
-- Anadir metadatos SEO y Open Graph en `index.html`.
+- Medir Lighthouse en produccion, no en Vite dev, antes de decidir nuevas optimizaciones.
+- Revisar el impacto real de los glows/orbs en mobile tras despliegue.
 
 ## Commits registrados en el desarrollo
 
@@ -204,5 +211,6 @@ style(projects): mejorar animaciones y efectos del modal
 perf(images): optimizar imagenes de proyectos
 feat(contacto): mejorar seccion premium de contacto
 feat(footer): anadir footer premium responsive
+fix(ui): corregir modal overlay y restaurar efectos de fondo
+perf(ui): reducir bundle inicial y optimizar animaciones
 ```
-

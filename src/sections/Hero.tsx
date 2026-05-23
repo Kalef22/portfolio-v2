@@ -4,8 +4,7 @@ import Reveal from "../components/Reveal";
 function Hero() {
     return (
         <section id="hero" className="hero">
-            <Reveal>
-                <div className="hero-content">
+            <div className="hero-content">
                     <div className="hero-badge">
                         <span className="status-dot" />
                         Disponible para proyectos full-stack y cloud
@@ -87,8 +86,7 @@ function Hero() {
                             </div>
                         </div>
                     </Reveal>
-                </div>
-            </Reveal>
+            </div>
         </section>
     );
 }
